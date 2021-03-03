@@ -1,4 +1,4 @@
-# ProEP_BALKAN
+# ProEP team BALKAN
 
 # "Chorba Deck" Restaurant Order Management System
 
