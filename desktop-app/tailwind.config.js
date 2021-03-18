@@ -23,6 +23,9 @@ module.exports = {
       fontFamily: {
         sans: ["Open Sans", "Source Sans Pro", ...fontFamily.sans]
       },
+      borderRadius: {
+        '5xl':'5rem'
+      }
     },
   },
   variants: {
