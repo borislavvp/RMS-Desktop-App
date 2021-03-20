@@ -14,6 +14,7 @@ import { DropdownMenuDirective } from './directives/dropdown-menu-directive.dire
 import { DropdownMenuOriginDirective } from './directives/dropdown-menu-origin.directive';
 import { OrderOptionsComponent } from './components/orders/order-options/order-options.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { OrderDetailsPageComponent } from './pages/orders/order-details-page/order-details-page.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DropdownMenuDirective,
     DropdownMenuOriginDirective,
     OrderOptionsComponent,
+    OrderDetailsPageComponent,
   ],
   imports: [
     BrowserModule,
