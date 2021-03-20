@@ -43,6 +43,7 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "popper.js": "^1.16.1",
     "postcss": "^8.2.7",
     "protractor": "~7.0.0",
     "tailwindcss": "^2.0.3",
