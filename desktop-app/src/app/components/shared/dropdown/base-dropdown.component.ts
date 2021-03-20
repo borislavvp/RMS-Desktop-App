@@ -38,11 +38,10 @@ export class BaseDropdownComponent implements AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this.host.nativeElement.removeChild(this.dropdown.element)
     this._originSub = this.origin.click.subscribe(_ => {
-      this._open = !this._open;
       if (this._open) {
-        this.open();
-      } else {
         this.close();
+      } else {
+        this.open();
       }
     });
   }
@@ -53,6 +52,7 @@ export class BaseDropdownComponent implements AfterContentInit, OnDestroy {
   open() {
     document.body.appendChild(this.dropdown.element);
     this._popper = new Popper(this.origin.element, this.dropdown.element, this._getOptions());
+    this._open = true;
   }
 
   /**
