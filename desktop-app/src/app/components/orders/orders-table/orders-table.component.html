@@ -29,13 +29,15 @@
         </div>
     </div>
     <div class="absolute bottom-0 flex items-center py-6">
-        <span>Showing </span>
+        <span class="flex text-lg  text-gray-700 mr-6">Showing {{innerHeight > 900 ? 10 : 7}} items from {{getOrdersNumber()}} data</span>
         <pagination-controls 
-            class="z-10"
+            class="pagination"
             (pageChange)="page = $event"
             autoHide="true"
-            directionLinks="false"
-            maxSize="3"
+            directionLinks="true"
+            maxSize="10"
+            previousLabel=""
+            nextLabel=""
         ></pagination-controls>
     </div>
 </div>
