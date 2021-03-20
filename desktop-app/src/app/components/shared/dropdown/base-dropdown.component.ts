@@ -70,9 +70,11 @@ export class BaseDropdownComponent implements AfterContentInit, OnDestroy {
    * Destroy popper and hide the dropdown
    */
   close() {
-    this._open = false;
-    this._popper && this._popper.destroy();
-    document.body.removeChild(this.dropdown.element)
+    if (this._open) {
+      this._open = false;
+      this._popper && this._popper.destroy();
+      document.body.removeChild(this.dropdown.element)
+    }
   }
 
   /**
