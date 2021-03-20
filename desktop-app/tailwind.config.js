@@ -27,10 +27,10 @@ module.exports = {
         '5xl':'5rem'
       },
       skew: {
-        '5':'5deg'
+        '4':'4deg'
       },
       rotate: {
-        '5':'5deg'
+        '4':'4deg'
       }
     },
   },
