@@ -13,6 +13,7 @@ import { OrdersPageComponent } from './pages/orders/orders-page/orders-page.comp
 import { DropdownMenuDirective } from './directives/dropdown-menu-directive.directive';
 import { DropdownMenuOriginDirective } from './directives/dropdown-menu-origin.directive';
 import { OrderOptionsComponent } from './components/orders/order-options/order-options.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { OrderOptionsComponent } from './components/orders/order-options/order-o
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

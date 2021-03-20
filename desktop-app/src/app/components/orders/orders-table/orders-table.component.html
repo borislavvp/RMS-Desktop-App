@@ -1,6 +1,7 @@
-<div class="flex w-full h-full py-10">
-    <div class="relative w-full">
-        <div class="absolute inset-0 bg-gradient-to-r from-yellow-700 to-yellow-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:rotate-6 sm:rounded-3xl"></div>
+<div class="flex flex-col justify-between w-full h-full">
+    <div class="relative flex-auto w-full">
+        <div class="absolute inset-0 bg-gradient-to-r from-yellow-700 to-yellow-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:rotate-6 sm:rounded-3xl 
+                    2xl:-skew-y-5 2xl:rotate-5"></div>
         <div class="relative bg-white w-full rounded-3xl overflow-hidden shadow-lg">
             <table class="table-auto text-gray-800 bg-gray-100 w-full">
                 <thead >
@@ -10,7 +11,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y">
-                    <tr *ngFor="let order of orders" >
+                    <tr *ngFor="let order of orders |  paginate: { itemsPerPage: innerHeight > 900 ? 10 : 7 , currentPage: page } " >
                         <td [ngClass]="{'w-32':field === 'status'}" *ngFor="let field of getColumns()" class="text-center py-4">
                             <span *ngIf="field !== 'status'; else orderStatus">
                                 {{order[field]}}
@@ -26,5 +27,15 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="absolute bottom-0 flex items-center py-6">
+        <span>Showing </span>
+        <pagination-controls 
+            class="z-10"
+            (pageChange)="page = $event"
+            autoHide="true"
+            directionLinks="false"
+            maxSize="3"
+        ></pagination-controls>
     </div>
 </div>

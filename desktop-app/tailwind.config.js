@@ -25,6 +25,12 @@ module.exports = {
       },
       borderRadius: {
         '5xl':'5rem'
+      },
+      skew: {
+        '5':'5deg'
+      },
+      rotate: {
+        '5':'5deg'
       }
     },
   },
