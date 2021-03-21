@@ -11,6 +11,7 @@
         #rla="routerLinkActive"
         routerLinkActive="border scale-105 bg-white shadow-2xl text-gray-700" 
         routerLink="/orders" 
+        [routerLinkActiveOptions]="{exact: true}"
         style="-webkit-tap-highlight-color: transparent;" 
         class="px-16 py-12 flex flex-col items-center text-gray-400 outline-none focus:outline-none transition-default transform rounded-3xl text-2xl tracking-wide font-semibold hover:text-gray-700 ">
             <div 
@@ -18,7 +19,7 @@
             class="z-10 absolute flex top-0 -mt-4 text-white text-base rounded-2xl px-4 py-2 bg-white justify-between items-center w-32 ">
                 <span 
                 [ngClass]="{'opacity-50' : !rla.isActive}"
-                class="relative shadow-md rounded-full h-7 w-7 bg-yellow-500 text-center">2</span>
+                class="relative shadow-md rounded-full h-7 w-7 bg-orange-500 text-center">2</span>
                 <span 
                 [ngClass]="{'opacity-50' : !rla.isActive}"
                 class="relative shadow-md rounded-full h-7 w-7 bg-green-700 text-center">3</span>

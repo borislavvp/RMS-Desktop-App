@@ -17,6 +17,19 @@ module.exports = {
   darkMode: 'class', // or 'media' or false
   theme: {
     extend: {
+      colors: {
+         orange: {
+          100: "#FEECDC",
+          200: "#FCD9BD",
+          300: "#FDBA8C",
+          400: "#FF8A4C",
+          500: "#FF5A1F",
+          600: "#D03801",
+          700: "#B43403",
+          800: "#8A2C0D",
+          900: "#771D1D"
+        },
+      },
       maxHeight: {
         ...spacing
       },
