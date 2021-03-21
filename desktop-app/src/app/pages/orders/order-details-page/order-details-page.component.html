@@ -1,1 +1,68 @@
-<p>order-details-page works!</p>
+<div class="flex flex-col w-full">
+    <div class="flex justify-between pb-10">
+        <div class="flex flex-col items-start">
+            <span class="font-semibold text-2xl text-gray-800">Order ID #{{orderId}}</span>
+            <div class="flex items-center font-semibold text-2xl">
+                <span routerLink="/orders" class="hover:underline hover:text-gray-600 cursor-pointer font-semibold text-lg text-gray-800 mr-1">Orders/</span>
+                <span class="font-semibold text-lg text-gray-400">Order Details</span>
+            </div>
+        </div>
+        <div class="flex cursor-pointer items-center p-4 rounded shadow-md bg-orange-500">
+            <span>
+                <svg class="w-6 h-6 mr-2" viewBox="0 0 13 19" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0)">
+                    <path d="M8.0326 1.20605H8.05107H8.0326ZM8.0326 1.20605L6.70305 8.23828L11.5411 8.25684L4.96726 17.7939L6.2968 10.0566L1.45874 10.0381L8.0326 1.20605ZM8.0326 0.0185547H7.94027C7.84179 0.0309245 7.75561 0.0525716 7.68175 0.0834961C7.60788 0.114421 7.52479 0.160807 7.43246 0.222656C7.34013 0.284505 7.25703 0.358724 7.18317 0.445312C7.17086 0.457682 7.16162 0.470052 7.15547 0.482422C7.14931 0.494792 7.14008 0.507161 7.12777 0.519531L0.498509 9.31445C0.215365 9.71029 0.184589 10.1247 0.40618 10.5576C0.443111 10.6318 0.489276 10.703 0.544674 10.771C0.600072 10.839 0.661625 10.9009 0.729333 10.9565C0.797041 11.0122 0.870905 11.0586 0.950924 11.0957C1.03094 11.1328 1.11404 11.1606 1.20021 11.1792C1.28639 11.1978 1.37256 11.207 1.45874 11.207L4.87493 11.2256L3.78544 17.5898C3.7362 17.862 3.77929 18.1187 3.9147 18.3599C4.05012 18.6011 4.24093 18.7773 4.48715 18.8887C4.56101 18.9258 4.63795 18.9505 4.71797 18.9629C4.79799 18.9753 4.88108 18.9814 4.96726 18.9814C5.32427 18.9814 5.62588 18.8206 5.87209 18.499L12.5014 8.96191C12.7845 8.56608 12.8153 8.15169 12.5937 7.71875C12.3721 7.28581 12.0212 7.06934 11.5411 7.06934H8.12493L9.19595 1.48438C9.20826 1.4349 9.21749 1.38851 9.22365 1.34521C9.22981 1.30192 9.23288 1.25553 9.23288 1.20605C9.23288 1.09473 9.21749 0.989583 9.18672 0.890625C9.15594 0.791667 9.11593 0.698893 9.06669 0.612305C9.01745 0.525716 8.95897 0.445312 8.89126 0.371094C8.82356 0.296875 8.74661 0.235026 8.66044 0.185547C8.57427 0.136068 8.48194 0.0958659 8.38345 0.0649414C8.28497 0.0340169 8.18648 0.0185547 8.088 0.0185547H8.0326Z" fill="#FFF8F1" stroke="#FFF8F1" stroke-width="0.5"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0">
+                    <rect width="13" height="19" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            </span>
+            <span class="font-semibold text-white">Order In Queue</span>
+            <span>
+                <svg class="w-5 h-5 mx-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.20009 5.73997C3.26706 5.66774 3.34761 5.6094 3.43712 5.5683C3.52664 5.52719 3.62338 5.50413 3.72181 5.50041C3.82024 5.4967 3.91844 5.51241 4.0108 5.54665C4.10316 5.58089 4.18787 5.63299 4.26009 5.69997L8.00009 9.22697L11.7401 5.69997C11.8123 5.633 11.897 5.58091 11.9894 5.54667C12.0817 5.51243 12.1799 5.49672 12.2784 5.50044C12.3768 5.50415 12.4735 5.52722 12.5631 5.56832C12.6526 5.60942 12.7331 5.66774 12.8001 5.73997C12.8671 5.8122 12.9192 5.89691 12.9534 5.98927C12.9876 6.08163 13.0033 6.17983 12.9996 6.27826C12.9959 6.37669 12.9728 6.47342 12.9317 6.56294C12.8906 6.65245 12.8323 6.733 12.7601 6.79997L8.51009 10.8C8.37141 10.9286 8.18924 11.0001 8.00009 11.0001C7.81095 11.0001 7.62878 10.9286 7.49009 10.8L3.24009 6.79997C3.16786 6.733 3.10952 6.65246 3.06842 6.56294C3.02732 6.47343 3.00425 6.37669 3.00053 6.27826C2.99682 6.17983 3.01253 6.08162 3.04677 5.98926C3.08101 5.89691 3.13311 5.81219 3.20009 5.73997Z" fill="#FFF8F1"/>
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div class="flex justify-between">
+        <div class="flex flex-col">
+            <div class="flex flex-col items-center bg-white rounded shadow-md mb-6">
+                <div class="rounded-full shadow-lg w-36 h-36 2xl:w-48 2xl:h-48 overflow-hidden mx-10 mt-4 mb-2">
+                    <img src="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex flex-col items-center pb-4">
+                    <span class="text-gray-800 font-semibold text-lg">Jane McKullinows</span>
+                    <span class="text-gray-500 font-semibold text-md">Bomanshof 152</span>
+                </div>
+            </div>
+            <div class="flex flex-col bg-white rounded shadow-md">
+                <div class="m-4">
+                    <span class="font-semibold text-xl">History</span>
+                    <div class="flex flex-col items-start h-56 pt-4 pb-2">
+                        <span style="width: 2px; margin-left: 10px;" class="h-40 mt-1 bg-gray-300 absolute"></span>
+                        <div class="flex relative h-1/4 items-start ">
+                            <span class="z-10 rounded-full w-6 h-6 bg-orange-500 border-orange-400 border shadow-md mr-6"></span>
+                            <div class="flex flex-col items-start">
+                                <span class="text-gray-700 font-semibold text-base">Order In Queue</span>
+                                <span class="text-gray-500 text-sm">Sat, 12th Jan 2020, 12:35AM</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start h-1/4 ">
+                            <span class="z-10 rounded-full w-6 h-6 border-2 border-gray-300 bg-white shadow-md mr-6"></span>
+                        </div>
+                        <div class="flex items-start h-1/4 ">
+                            <span class="z-10 rounded-full w-6 h-6 border-2 border-gray-300 bg-white  shadow-md mr-6"></span>
+                        </div>
+                        <div class="flex items-start h-1/4">
+                            <span class="z-10 rounded-full w-6 h-6 border-2 border-gray-300 bg-white  shadow-md mr-6"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
