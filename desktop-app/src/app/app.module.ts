@@ -15,6 +15,13 @@ import { DropdownMenuOriginDirective } from './directives/dropdown-menu-origin.d
 import { OrderOptionsComponent } from './components/orders/order-options/order-options.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { OrderDetailsPageComponent } from './pages/orders/order-details-page/order-details-page.component';
+import { AddMealPageComponent } from './pages/add-meal-page/add-meal-page.component';
+import { UpdateMealPageComponent } from './pages/update-meal-page/update-meal-page.component';
+import { AddMealFormComponent } from './components/mealFunctionalities/addMeal/add-meal-form/add-meal-form.component';
+import { AddMealImageComponent } from './components/mealFunctionalities/addMeal/add-meal-image/add-meal-image.component';
+import { UpdateMealFormComponent } from './components/mealFunctionalities/updateMeal/update-meal-form/update-meal-form.component';
+import { UpdateMealImageComponent } from './components/mealFunctionalities/updateMeal/update-meal-image/update-meal-image.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +37,12 @@ import { OrderDetailsPageComponent } from './pages/orders/order-details-page/ord
     DropdownMenuOriginDirective,
     OrderOptionsComponent,
     OrderDetailsPageComponent,
+    AddMealPageComponent,
+    UpdateMealPageComponent,
+    AddMealFormComponent,
+    AddMealImageComponent,
+    UpdateMealFormComponent,
+    UpdateMealImageComponent
   ],
   imports: [
     BrowserModule,
