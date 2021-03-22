@@ -25,12 +25,21 @@ module.exports = {
       },
       borderRadius: {
         '5xl':'5rem'
+      },
+      skew: {
+        '4':'4deg'
+      },
+      rotate: {
+        '4':'4deg'
       }
     },
   },
   variants: {
     extend: {
-      boxShadow: ["responsive", "hover", "focus", "group-hover"]
+      boxShadow: ["responsive", "hover", "focus", "group-hover"],
+      backgroundAttachment: ['responsive'],
+      backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+      borderColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
     },
   },
   plugins: [],
