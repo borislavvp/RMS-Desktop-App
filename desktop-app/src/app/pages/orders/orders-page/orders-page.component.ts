@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./orders-page.component.scss']
 })
 export class OrdersPageComponent implements OnInit {
-
+  page: number = 1;
   constructor() { }
 
   ngOnInit(): void {

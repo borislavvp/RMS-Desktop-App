@@ -1,51 +1,13 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Order, OrderStatus } from '../../../models/order.model';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Dummy_Orders} from '../../../models/order.model';
 @Component({
   selector: 'app-orders-table',
   templateUrl: './orders-table.component.html',
   styleUrls: ['./orders-table.component.scss'],
 })
 export class OrdersTableComponent implements OnInit {
-  orders = [
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivered,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivered,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivered,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivered,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivered,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Delivering,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.Preparing,[]),
-    new Order(1,new Date().toDateString(),"boby","Bomanshof 131",19,OrderStatus.New,[]),
-  ];
+  @Input() page: number;
+  orders = Dummy_Orders;
   headers = ['Order ID', 'Date', 'Customer Name', 'Location', 'Amount', 'Status'];
   
   private columns = Object.keys(this.orders[0]);
@@ -54,18 +16,20 @@ export class OrdersTableComponent implements OnInit {
   
   public getOrdersNumber = () => this.orders.length;
 
-  public innerHeight: any;
-  page: number = 1;
+  public IsScreenBigger = () => innerHeight > 800 && innerWidth > 1450;
 
   constructor() { }
+  
+  public innerHeight: any;
+  public innerWidth: any;
 
-  ngOnInit() {
-      this.innerHeight = window.innerHeight;
+  ngOnInit(): void {
   }
 
   @HostListener('window:resize', ['$event'])
-    onResize(event) {
+  onResize(event) {
     this.innerHeight = window.innerHeight;
+    this.innerWidth = window.innerWidth;
   }
 
 }
