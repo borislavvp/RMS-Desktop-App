@@ -10,6 +10,11 @@ export class OrderOptionsComponent implements OnInit {
   public get OrderStatus(): typeof OrderStatus{
     return OrderStatus;
   }
+
+  testClick = ($event:MouseEvent) => {
+    $event.stopPropagation();
+    $event.preventDefault();
+  }
   constructor() { }
 
   ngOnInit(): void {

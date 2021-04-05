@@ -1,0 +1,45 @@
+<div class="flex flex-col justify-between h-full w-full">
+    <div class="flex w-full">
+        <div class="relative flex-auto w-full">
+            <div class="absolute inset-0 bg-gradient-to-b from-yellow-800 to-yellow-500 shadow-lg 
+                transform -skew-y-6 sm:skew-y-0 rotate-6 rounded-3xl"
+            ></div>
+            <div class="relative bg-white w-full rounded-3xl overflow-hidden shadow-lg">
+                <table class="table-auto text-gray-800 bg-gray-100 w-full">
+                    <thead>
+                        <tr class="shadow-sm ">
+                            <th  class="py-4 bg-white "></th>
+                            <th *ngFor="let header of headers" class="flex-shrink-0 flex-nowrap p-4 bg-white text-gray-800 " >{{header}}</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr *ngFor="let meal of meals |  paginate: { itemsPerPage: 5 , currentPage: page } " >
+                            <td class="py-2 w-32">
+                                <div class="mx-auto w-28 h-16 rounded-3xl overflow-hidden shadow-md">
+                                    <img [src]="meal.img" class="w-full h-full object-cover "/>
+                                </div>
+                            </td>
+                            <td  *ngFor="let field of getColumns()" class=" text-center py-6">
+                                <p [ngClass]="{'truncate  ': field === 'description' || field === 'products'}"  >
+                                    {{meal[field]}}
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center py-6">
+        <span class="flex text-lg  text-gray-700 mr-6">Showing 5 items from {{getMealsNumber()}} data</span>
+        <pagination-controls 
+            class="pagination"
+            (pageChange)="page = $event"
+            autoHide="true"
+            directionLinks="true"
+            maxSize="10"
+            previousLabel=""
+            nextLabel=""
+        ></pagination-controls>
+    </div>
+</div>

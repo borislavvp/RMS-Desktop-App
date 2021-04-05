@@ -1,4 +1,16 @@
-<div class="flex flex-col w-full">
+<div class="flex flex-col justify-between h-full w-full">
     <app-order-header></app-order-header>
-    <app-orders-table></app-orders-table>
+    <app-orders-table [page]="page"></app-orders-table>
+    <div class="flex items-center py-6">
+        <span class="flex text-lg  text-gray-700 mr-6">Showing 10 items from 34 data</span>
+        <pagination-controls 
+            class="pagination"
+            (pageChange)="page = $event"
+            autoHide="true"
+            directionLinks="true"
+            maxSize="10"
+            previousLabel=""
+            nextLabel=""
+        ></pagination-controls>
+    </div>
 </div>

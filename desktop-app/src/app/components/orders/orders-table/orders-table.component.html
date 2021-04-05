@@ -1,44 +1,33 @@
-<div class="flex flex-col justify-between w-full h-full">
-    <div class="relative flex-auto w-full">
-        <div class="absolute inset-0 bg-gradient-to-r from-yellow-700 to-yellow-500 shadow-lg 
-            transform -skew-y-6 sm:skew-y-0 sm:rotate-6 sm:rounded-3xl 2xl:-skew-y-4 2xl:rotate-4"
-        ></div>
-        <div class="relative bg-white w-full rounded-3xl overflow-hidden shadow-lg">
-            <table class="table-auto text-gray-800 bg-gray-100 w-full">
-                <thead >
-                    <tr class="shadow-sm ">
-                        <th *ngFor="let header of headers" class="flex-shrink-0 flex-nowrap py-4 bg-white text-gray-800 " >{{header}}</th>
-                        <th  class="py-4 bg-white "></th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y">
-                    <tr *ngFor="let order of orders |  paginate: { itemsPerPage: innerHeight > 900 ? 10 : 7 , currentPage: page } " >
-                        <td [ngClass]="{'w-32':field === 'status'}" *ngFor="let field of getColumns()" class="text-center py-4">
-                            <span *ngIf="field !== 'status'; else orderStatus">
-                                {{order[field]}}
-                            </span>
-                            <ng-template #orderStatus>
-                                <app-order-status [status]="order[field]" ></app-order-status>
-                            </ng-template>
-                        </td>
-                        <td class="w-20 relative">
-                            <app-order-options [order]="order"></app-order-options>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="flex h-full">
+    <div class="flex w-full h-full">
+        <div class="relative flex-auto w-full">
+            <div class="absolute inset-0 bg-gradient-to-b from-yellow-800 to-yellow-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:rotate-6 rounded-3xl 2xl:-skew-y-4 2xl:rotate-4"
+            ></div>
+            <div class="relative bg-white w-full rounded-3xl overflow-hidden shadow-lg">
+                <table class="table-auto text-gray-800 bg-gray-100 w-full">
+                    <thead >
+                        <tr class="shadow-sm ">
+                            <th *ngFor="let header of headers" class="flex-shrink-0 flex-nowrap py-4 bg-white text-gray-800 " >{{header}}</th>
+                            <th  class="py-4 bg-white "></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr [routerLink]="[order.id]" class="hover:bg-white cursor-pointer" *ngFor="let order of orders |  paginate: { itemsPerPage: IsScreenBigger() ? 10 : 7 , currentPage: page } " >
+                            <td [ngClass]="{'w-32':field === 'status'}" *ngFor="let field of getColumns()" class="text-center py-4">
+                                <span *ngIf="field !== 'status'; else orderStatus">
+                                    {{order[field]}}
+                                </span>
+                                <ng-template #orderStatus>
+                                    <app-order-status [status]="order[field]" ></app-order-status>
+                                </ng-template>
+                            </td>
+                            <td class="w-20 relative">
+                                <app-order-options [order]="order"></app-order-options>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <div class="absolute bottom-0 flex items-center py-6">
-        <span class="flex text-lg  text-gray-700 mr-6">Showing {{innerHeight > 900 ? 10 : 7}} items from {{getOrdersNumber()}} data</span>
-        <pagination-controls 
-            class="pagination"
-            (pageChange)="page = $event"
-            autoHide="true"
-            directionLinks="true"
-            maxSize="10"
-            previousLabel=""
-            nextLabel=""
-        ></pagination-controls>
     </div>
 </div>
