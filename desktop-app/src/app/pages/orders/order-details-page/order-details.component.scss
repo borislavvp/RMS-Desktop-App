@@ -1,0 +1,19 @@
+.pagination::ng-deep.ngx-pagination {
+  @apply mb-0;
+
+  .current {
+    @apply bg-gray-700 rounded shadow-md;
+  }
+
+  .pagination-next {
+    ::after {
+      @apply font-semibold text-yellow-700 ml-0;
+    }
+  }
+
+  .pagination-previous {
+    ::before {
+      @apply font-semibold text-yellow-700 mr-0;
+    }
+  }
+}

@@ -21,6 +21,9 @@ import { AddMealFormComponent } from './components/mealFunctionalities/addMeal/a
 import { AddMealImageComponent } from './components/mealFunctionalities/addMeal/add-meal-image/add-meal-image.component';
 import { UpdateMealFormComponent } from './components/mealFunctionalities/updateMeal/update-meal-form/update-meal-form.component';
 import { UpdateMealImageComponent } from './components/mealFunctionalities/updateMeal/update-meal-image/update-meal-image.component';
+import { MealOptionsComponent } from './components/meals/meal-options/meal-options.component';
+import { OrderMealsTableComponent } from './components/orders/order-details/order-meals-table/order-meals-table.component';
+import { OrderOverviewComponent } from './components/orders/order-details/order-overview/order-overview.component';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import { UpdateMealImageComponent } from './components/mealFunctionalities/updat
     AddMealFormComponent,
     AddMealImageComponent,
     UpdateMealFormComponent,
-    UpdateMealImageComponent
+    UpdateMealImageComponent,
+    MealOptionsComponent,
+    OrderMealsTableComponent,
+    OrderOverviewComponent
   ],
   imports: [
     BrowserModule,

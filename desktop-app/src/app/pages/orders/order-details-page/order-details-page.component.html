@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full">
+<div class="flex flex-col h-full w-full">
     <div class="flex justify-between pb-10">
         <div class="flex flex-col items-start">
             <span class="font-semibold text-2xl text-gray-800">Order ID #{{orderId}}</span>
@@ -7,7 +7,7 @@
                 <span class="font-semibold text-lg text-gray-400">Order Details</span>
             </div>
         </div>
-        <div class="flex cursor-pointer items-center p-4 rounded shadow-md bg-orange-500">
+        <div class="flex cursor-pointer items-center p-3 rounded shadow-md hover:bg-orange-400 bg-orange-500">
             <span>
                 <svg class="w-6 h-6 mr-2" viewBox="0 0 13 19" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0)">
@@ -28,41 +28,8 @@
             </span>
         </div>
     </div>
-    <div class="flex justify-between">
-        <div class="flex flex-col">
-            <div class="flex flex-col items-center bg-white rounded shadow-md mb-6">
-                <div class="rounded-full shadow-lg w-36 h-36 2xl:w-48 2xl:h-48 overflow-hidden mx-10 mt-4 mb-2">
-                    <img src="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg" class="w-full h-full object-cover" />
-                </div>
-                <div class="flex flex-col items-center pb-4">
-                    <span class="text-gray-800 font-semibold text-lg">Jane McKullinows</span>
-                    <span class="text-gray-500 font-semibold text-md">Bomanshof 152</span>
-                </div>
-            </div>
-            <div class="flex flex-col bg-white rounded shadow-md">
-                <div class="m-4">
-                    <span class="font-semibold text-xl">History</span>
-                    <div class="flex flex-col items-start h-56 pt-4 pb-2">
-                        <span style="width: 2px; margin-left: 10px;" class="h-40 mt-1 bg-gray-300 absolute"></span>
-                        <div class="flex relative h-1/4 items-start ">
-                            <span class="z-10 rounded-full w-6 h-6 bg-orange-500 border-orange-400 border shadow-md mr-6"></span>
-                            <div class="flex flex-col items-start">
-                                <span class="text-gray-700 font-semibold text-base">Order In Queue</span>
-                                <span class="text-gray-500 text-sm">Sat, 12th Jan 2020, 12:35AM</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start h-1/4 ">
-                            <span class="z-10 rounded-full w-6 h-6 border-2 border-gray-300 bg-white shadow-md mr-6"></span>
-                        </div>
-                        <div class="flex items-start h-1/4 ">
-                            <span class="z-10 rounded-full w-6 h-6 border-2 border-gray-300 bg-white  shadow-md mr-6"></span>
-                        </div>
-                        <div class="flex items-start h-1/4">
-                            <span class="z-10 rounded-full w-6 h-6 border-2 border-gray-300 bg-white  shadow-md mr-6"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="flex h-full w-full justify-between">
+        <app-order-overview></app-order-overview>
+        <app-order-meals-table></app-order-meals-table>
     </div>
 </div>

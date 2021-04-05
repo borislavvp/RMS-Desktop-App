@@ -9,8 +9,8 @@ const routes: Routes = [
   {path: 'orders', component: OrdersPageComponent},
   {path: 'orders/:id', component: OrderDetailsPageComponent},
   {path: 'meals', component: MealsTableComponent},
-  {path: 'addmeal', component: AddMealPageComponent},
-  {path: 'updatemeal', component: UpdateMealPageComponent},
+  {path: 'meals/new', component: AddMealPageComponent},
+  {path: 'meals/:id', component: UpdateMealPageComponent},
 ];
 
 @NgModule({
