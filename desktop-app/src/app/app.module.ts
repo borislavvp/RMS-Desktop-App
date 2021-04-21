@@ -24,7 +24,11 @@ import { UpdateMealImageComponent } from './components/mealFunctionalities/updat
 import { MealOptionsComponent } from './components/meals/meal-options/meal-options.component';
 import { OrderMealsTableComponent } from './components/orders/order-details/order-meals-table/order-meals-table.component';
 import { OrderOverviewComponent } from './components/orders/order-details/order-overview/order-overview.component';
-
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,12 +52,17 @@ import { OrderOverviewComponent } from './components/orders/order-details/order-
     UpdateMealImageComponent,
     MealOptionsComponent,
     OrderMealsTableComponent,
-    OrderOverviewComponent
+    OrderOverviewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
