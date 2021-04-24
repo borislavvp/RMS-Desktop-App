@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { from } from 'rxjs';
 import { AuthService } from './services/authentication/auth.service';
 
 @Component({
@@ -8,17 +9,19 @@ import { AuthService } from './services/authentication/auth.service';
 })
 export class AppComponent implements OnInit {
   title = "Restaurant Application"
-  
+  private isUserAuthenticated = false;
   private _authService: AuthService;
 
   constructor(authService: AuthService) {
     this._authService = authService;
+    this._authService.authChanged
+      .subscribe((logged) => this.isUserAuthenticated = logged)
    }
 
   ngOnInit(): void {
   }
 
-  get IsAuthenticated() {
-    return this._authService.isAuthenticated();
+  get shouldShowSiderBar() {
+    return this.isUserAuthenticated;
   }
 }

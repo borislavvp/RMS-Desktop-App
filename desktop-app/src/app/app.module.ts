@@ -24,7 +24,9 @@ import { UpdateMealImageComponent } from './components/mealFunctionalities/updat
 import { MealOptionsComponent } from './components/meals/meal-options/meal-options.component';
 import { OrderMealsTableComponent } from './components/orders/order-details/order-meals-table/order-meals-table.component';
 import { OrderOverviewComponent } from './components/orders/order-details/order-overview/order-overview.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { LoginRedirectComponent } from './pages/auth/login-redirect/login-redirect.component';
+import { LogoutRedirectComponent } from './pages/auth/logout-redirect/logout-redirect.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -54,6 +56,8 @@ import { HttpClientModule } from '@angular/common/http';
     OrderMealsTableComponent,
     OrderOverviewComponent,
     LoginComponent,
+    LoginRedirectComponent,
+    LogoutRedirectComponent,
   ],
   imports: [
     BrowserModule,
