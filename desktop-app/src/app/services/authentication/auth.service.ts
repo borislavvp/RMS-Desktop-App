@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User, UserManager } from 'oidc-client';
-import { from, Observable, Subject } from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { UserManager } from 'oidc-client';
+import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,6 @@ export class AuthService {
   fetching: boolean = false;
   authChanged = new Subject<boolean>();
   
-  private loggedUser: User;
   private _userManager: UserManager;
   private _httpClient: HttpClient;
 
@@ -24,7 +23,7 @@ export class AuthService {
     
     this._userManager = new UserManager({
       authority: environment.IDENTITY_AUTHORITY,
-      client_id: "TEST_WEBSITE_ID",
+      client_id: "DESKTOP_APP_ID",
       redirect_uri:  window.location.protocol + "//" + window.location.host + "/signin-oidc",
       response_type: "code",
       scope: "openid profile",
@@ -40,7 +39,6 @@ export class AuthService {
     return new Promise<boolean>(resolve => {
       this._userManager.getUser()
         .then((user) => {
-          this.loggedUser = user;
           const IsLoggedIn = user ? !user.expired : false;
           resolve(IsLoggedIn);
           this.authChanged.next(IsLoggedIn);
@@ -75,10 +73,7 @@ export class AuthService {
         .signinRedirectCallback()
         .then(() => {
           this._userManager.getUser()
-            .then(user => {
-              this.loggedUser = user;
-              resolve();
-            })
+            .then(() => resolve())
             .catch(() => reject());
         })
         .catch(() => reject());

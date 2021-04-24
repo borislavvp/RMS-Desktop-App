@@ -10,7 +10,7 @@
     <script>
         new Oidc.UserManager({
             authority: "https://localhost:5001",
-            client_id: "TEST_WEBSITE_ID",
+            client_id: "DESKTOP_APP_ID",
             response_type: "code",
             scope: "openid profile",
         }).signinSilentCallback().catch(err => console.log(err));
