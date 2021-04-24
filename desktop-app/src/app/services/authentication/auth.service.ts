@@ -1,31 +1,62 @@
 import { Injectable } from '@angular/core';
 import { User, UserManager } from 'oidc-client';
-import { Observable } from 'rxjs';
+import { from, Observable, Subject } from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  httpOptions = {
+    withCredentials: true
+  };
+
   fetching: boolean = false;
+  authChanged = new Subject<boolean>();
+  
+  private loggedUser: User;
   private _userManager: UserManager;
   private _httpClient: HttpClient;
-  constructor(httpClient:HttpClient) {
-    this._userManager = new UserManager({
 
+  constructor(httpClient: HttpClient, router: Router) {
+    
+    this._userManager = new UserManager({
+      authority: environment.IDENTITY_AUTHORITY,
+      client_id: "TEST_WEBSITE_ID",
+      redirect_uri:  window.location.protocol + "//" + window.location.host + "/signin-oidc",
+      response_type: "code",
+      scope: "openid profile",
+      post_logout_redirect_uri: window.location.protocol + "//" + window.location.host + "/signout-callback-oidc",
+      automaticSilentRenew: true,
+      silent_redirect_uri: window.location.protocol + "//" + window.location.host + "/assets/silent-callback.html"
     })
     this._httpClient = httpClient;
+    this._userManager.events.addAccessTokenExpired(() => router.navigate(["login"]))
+  }
+  
+  get isAuthenticated() {
+    return new Promise<boolean>(resolve => {
+      this._userManager.getUser()
+        .then((user) => {
+          this.loggedUser = user;
+          const IsLoggedIn = user ? !user.expired : false;
+          resolve(IsLoggedIn);
+          this.authChanged.next(IsLoggedIn);
+        })
+        .catch(() => {
+          resolve(false);
+          this.authChanged.next(false);
+        })
+     })
   }
 
-  isAuthenticated() {
-    return false;
-  }
-
-  SignIn(username: string, password: string): Promise<void> {
+  SignIn(email: string, password: string): Promise<void> {
     this.fetching = true;
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        this._httpClient.post<void>("https://localhost:5001/api/login", { username, password })
+        this._httpClient.post<void>(`${this._userManager.settings.authority}/api/login`, { email, password },this.httpOptions)
         .toPromise()
         .then(() => this._userManager.signinRedirect()
             .then(() => resolve())
@@ -36,5 +67,39 @@ export class AuthService {
         .finally(() => this.fetching = false)
       }, 500);
     }) 
+  }
+
+  HandleLoginCallback() {
+    return new Promise<void>((resolve, reject) => {
+      this._userManager
+        .signinRedirectCallback()
+        .then(() => {
+          this._userManager.getUser()
+            .then(user => {
+              this.loggedUser = user;
+              resolve();
+            })
+            .catch(() => reject());
+        })
+        .catch(() => reject());
+    })
+  }
+
+  Logout() {
+    return new Promise<void>((resolve, reject) => {
+      this._userManager
+        .signoutRedirect()
+        .then(() => resolve())
+        .catch(() => reject());
+    })
+  }
+
+  HandleLogoutCallback() {
+    return new Promise<void>((resolve, reject) => {
+      this._userManager
+        .signoutRedirectCallback()
+        .then(() => resolve())
+        .catch(() => reject());
+    })
   }
 }
