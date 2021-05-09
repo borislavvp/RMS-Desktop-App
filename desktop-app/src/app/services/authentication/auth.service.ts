@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserManager } from 'oidc-client';
+import { User, UserManager } from 'oidc-client';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -32,9 +32,18 @@ export class AuthService {
       silent_redirect_uri: window.location.protocol + "//" + window.location.host + "/assets/silent-callback.html"
     })
     this._httpClient = httpClient;
-    this._userManager.events.addAccessTokenExpired(() => router.navigate(["login"]))
+    this._userManager.events.addAccessTokenExpired(() => router.navigate(["login"]));
   }
-  
+  get User() {
+    return new Promise<User>((resolve, reject) => {
+      this._userManager.getUser()
+        .then(user => {
+          resolve(user);
+        }).catch(error => {
+            reject();
+        })
+    });
+  }
   get isAuthenticated() {
     return new Promise<boolean>(resolve => {
       this._userManager.getUser()
