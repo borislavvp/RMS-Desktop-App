@@ -1,43 +1,55 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-
-  constructor() { }
-
-  private subject: Observable<MessageEvent>;
+  private subject = new Subject<MessageEvent>();
+  private server: WebSocket;
   
-  public connect(url) {
-    if (!this.subject) {
-      this.subject = this.create(url);
-      console.log("Successfully connected: " + url);
-    }
+  constructor() { }
+  
+  get Subject() {
     return this.subject;
   }
 
-  private create(url): Observable<MessageEvent> {
-    let ws = new WebSocket(url);
+  public disconnect() {
+    this.server && this.server.close();
+  }
 
-    let socket = new Observable((obs: Observer<MessageEvent>) => {
-      ws.onmessage = obs.next.bind(obs);
-      ws.onopen = () => console.log(`App socket open at ${url}`);
-      ws.onerror = obs.error.bind(obs);
-      ws.onclose = (ev: CloseEvent) => {
+  public connect(url: string) {
+      this.server = new WebSocket(url);
+
+      this.server.onmessage = (ev: MessageEvent) => {
+        console.log(ev);
+        this.subject.next(ev);
+      }
+      this.server.onopen = (ev) => {
+        console.log(`App socket open at ${url}`);
+      };
+      this.server.onerror = () => {
+        console.error("Socket encountered error: Closing socket");
+        this.server.close();
+      };
+      this.server.onclose = (ev: CloseEvent) => {
         console.log(
           "Socket is closed. Reconnect will be attempted in 2 seconds.",
           ev.reason
         );
-        setTimeout(() => {
-          if (!ws.OPEN && !ws.CONNECTING && !ws.CLOSED) {
-            this.connect(url);
-          }
-        }, 2000);
-        return obs.complete.bind(obs);
+        this.reconnect(url);
       };
-    });
-    return socket;
+    return this.subject;
+  }
+
+  private reconnect = (url:string) => {
+     setTimeout(() => {
+        if (
+          !(this.server.readyState === this.server.OPEN) &&
+          !(this.server.readyState === this.server.CONNECTING)
+        ) {
+            this.connect(url);
+        }
+      }, 2000);
   }
 }
