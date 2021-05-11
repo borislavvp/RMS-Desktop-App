@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { ServerMessage } from './messages/server/ServerMessage';
+import { SocketMessagesListeners } from './types/SocketMessagesListeners';
+import { handleSocketMessage } from './utils/handleSocketMessage';
+import { initializeSocketListeners } from './utils/initializeSocketListeners';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-  private subject = new Subject<MessageEvent>();
+  private subject = new Subject<ServerMessage>();
   private server: WebSocket;
+  public on: SocketMessagesListeners = initializeSocketListeners();
   
   constructor() { }
   
@@ -18,12 +23,11 @@ export class SocketService {
     this.server && this.server.close();
   }
 
-  public connect(url: string) {
-      this.server = new WebSocket(url);
-
+  public connect(url: string,token:string) {
+      this.server = new WebSocket(`${url}/authorization?token=${token}`);
       this.server.onmessage = (ev: MessageEvent) => {
-        console.log(ev);
-        this.subject.next(ev);
+        handleSocketMessage(JSON.parse(ev.data), this.on);
+        this.subject.next(ev.data);
       }
       this.server.onopen = (ev) => {
         console.log(`App socket open at ${url}`);
@@ -37,18 +41,18 @@ export class SocketService {
           "Socket is closed. Reconnect will be attempted in 2 seconds.",
           ev.reason
         );
-        this.reconnect(url);
+        this.reconnect(url,token);
       };
     return this.subject;
   }
 
-  private reconnect = (url:string) => {
+  private reconnect = (url:string,token:string) => {
      setTimeout(() => {
         if (
           !(this.server.readyState === this.server.OPEN) &&
           !(this.server.readyState === this.server.CONNECTING)
         ) {
-            this.connect(url);
+            this.connect(url,token);
         }
       }, 2000);
   }
