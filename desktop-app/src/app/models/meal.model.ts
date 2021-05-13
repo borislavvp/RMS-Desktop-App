@@ -1,5 +1,5 @@
 export class Meal{
-    constructor(public id: number, public img: string, public name: string, public description: string,public products: string,public price:number){}
+    constructor(public id: number, public image: string, public name: string, public description: string,public ingredients: string,public price:number){}
 }
 
 export const Dummy_Meals = [

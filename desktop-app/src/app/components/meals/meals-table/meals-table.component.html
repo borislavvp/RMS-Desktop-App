@@ -35,7 +35,7 @@
                             <tr *ngFor="let meal of meals |  paginate: { itemsPerPage: IsScreenBigger() ? 7 : 5 , currentPage: page } " >
                                 <td class="px-4">
                                     <div class="mx-auto w-28 h-16 rounded-3xl overflow-hidden shadow-md">
-                                        <img [src]="meal.img" class="w-full h-full object-cover "/>
+                                        <img [src]="meal.image" class="w-full h-full object-cover "/>
                                     </div>
                                 </td>
                                 <td  
