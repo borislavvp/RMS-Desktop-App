@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/authentication/auth.service';
+import { OrderAvailableMessage } from './services/socket/messages/server/OrderAvailableMessage';
 import { SocketService } from './services/socket/socket.service';
 
 @Component({
@@ -19,14 +20,8 @@ export class AppComponent implements OnInit {
       .subscribe((logged) => {
         this.isUserAuthenticated = logged;
         if (logged) {
-          console.log(environment.ORDER_MESSAGE_SERVICE("ASD"))
           authService.User
-            .then(user => {
-              socketService
-                .connect(environment.ORDER_MESSAGE_SERVICE(user.access_token))
-                .subscribe(obs => console.log(obs.data))
-            }
-        )
+          .then(user => socketService.connect(environment.ORDER_MESSAGE_SERVICE,user.access_token))
         } else {
           socketService.disconnect();
         }
