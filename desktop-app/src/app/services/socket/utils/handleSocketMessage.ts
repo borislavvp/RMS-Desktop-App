@@ -7,7 +7,6 @@ import { SocketMessagesListeners } from "../types/SocketMessagesListeners";
 const IsMessage = (message: ServerMessage, expected: ServerMessageType) => message.type === expected;
 
 export const handleSocketMessage = (message: ServerMessage, socketListeners: SocketMessagesListeners) => {
-    console.log(socketListeners)
     if (IsMessage(message, ServerMessageType.ORDER_AVAILABLE)) {
         socketListeners.OrderAvailable?.(message as OrderAvailableMessage);
     }

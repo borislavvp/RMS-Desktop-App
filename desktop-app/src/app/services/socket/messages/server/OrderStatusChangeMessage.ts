@@ -1,12 +1,6 @@
+import { OrderStatus } from "src/app/models/order.model";
 import { Message } from "../Message";
 import { ServerMessageType } from "./ServerMessageType";
-
-export enum OrderStatus {
-    NEW,
-    PREPARED,
-    PICKED,
-    DELIVERED
-}
 
 interface OrderStatusChangePayload {
   orderNumber: number;
