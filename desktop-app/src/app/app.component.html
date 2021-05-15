@@ -1,5 +1,5 @@
 <div class="bg-gray-100 flex flex-row h-screen overflow-hidden">
-  <app-side-bar></app-side-bar>
+  <app-side-bar *ngIf="shouldShowSiderBar"></app-side-bar>
   <div class="m-14 w-full">
     <router-outlet></router-outlet>
   </div>
