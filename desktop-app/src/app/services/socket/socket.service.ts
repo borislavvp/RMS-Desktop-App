@@ -14,10 +14,6 @@ export class SocketService {
   public on: SocketMessagesListeners = initializeSocketListeners();
   
   constructor() { }
-  
-  get Subject() {
-    return this.subject;
-  }
 
   public disconnect() {
     this.server && this.server.close();
