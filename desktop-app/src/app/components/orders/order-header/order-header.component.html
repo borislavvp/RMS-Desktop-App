@@ -5,6 +5,7 @@
     </div>
 
     <div class="flex w-full mx-6">
-        <input type="text" placeholder="Search order by ID" class="px-4 py-2 shadow-lg w-full focus:outline-none focus:ring rounded"/>
+        <input type="number" placeholder="Search order by ID" [ngModel]="orderNumber" (ngModelChange)="filterOrder($event)"
+         class="px-4 py-2 shadow-lg w-full focus:outline-none focus:ring rounded"/>
     </div>
 </div>

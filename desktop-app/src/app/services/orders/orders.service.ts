@@ -73,4 +73,8 @@ export class OrdersService {
         .catch(() => reject())
      })
   }
+
+  public filterOrderById(orderNumber: number) {
+    orderNumber !== null ? this.ordersChanged.next(this._orders.filter(o => `${o.id}`.includes(`${orderNumber}`))) : this.ordersChanged.next(this._orders);
+  }
 }
