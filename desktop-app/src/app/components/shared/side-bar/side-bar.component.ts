@@ -10,7 +10,6 @@ export class SideBarComponent implements OnInit {
   private _authService: AuthService;
   private _toastrService: ToastrService;
   IsFetching: boolean = false;
-  
   constructor(authService: AuthService,toastrService: ToastrService) {
     this._authService = authService;
     this._toastrService = toastrService;
@@ -18,7 +17,6 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
   SignOut() {
     this.IsFetching = true;
     this._authService.Logout()
