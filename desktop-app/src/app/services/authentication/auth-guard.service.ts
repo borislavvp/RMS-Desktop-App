@@ -10,8 +10,7 @@ import { take,tap } from 'rxjs/operators';
 })
 export class AuthGuardService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
-  async canActivate( route: ActivatedRouteSnapshot,
-      state: RouterStateSnapshot) : Promise<boolean> {
+  canActivate() : Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.auth.isAuthenticated.then(logged => {
         if (!logged) {
