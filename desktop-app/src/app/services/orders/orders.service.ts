@@ -13,15 +13,18 @@ import { convertOrderFromInputModel } from './utils/convertOrderFromInputModel';
 })
 export class OrdersService {
   private _orders: Order[];
-  private _odersRepository:OrdersRepository;
   public ordersChanged: Subject<Order[]>;
+  public statusFilterChanged: Subject<OrderStatus>;
+  public searchValueChanged: Subject<number>;
   
-  constructor(socketService: SocketService,odersRepository:OrdersRepository) {
+  constructor(socketService: SocketService,private _odersRepository:OrdersRepository) {
     this._orders = [];
     this.ordersChanged = new Subject();
-    this._odersRepository = odersRepository;
+    this.statusFilterChanged = new Subject();
+    this.searchValueChanged = new Subject();
     socketService.on.OrderAvailable = this.OrderAvailableHandler;
     socketService.on.OrderStatusChange = this.OrderStatusChangeHandler;
+    this.initializeTodaysOrders().catch(() => { });
   }
 
   private OrderAvailableHandler = ({ payload }: OrderAvailableMessage) => {
@@ -51,7 +54,9 @@ export class OrdersService {
   get Orders() {
     return this._orders;
   }
-
+  public getOrderById(orderNumber: number) {
+    return this._orders.find(o => o.id === orderNumber);
+  }
   public initializeTodaysOrders() {
     return new Promise<void>((resolve, reject) => {
       this._odersRepository.getTodaysOrders()
@@ -70,11 +75,15 @@ export class OrdersService {
       this._odersRepository.changeOrderStatus(status)
         .toPromise()
         .then(() => resolve())
-        .catch(() => reject())
+        .catch(() => {reject()})
      })
   }
 
-  public filterOrderById(orderNumber: number) {
-    orderNumber !== null ? this.ordersChanged.next(this._orders.filter(o => `${o.id}`.includes(`${orderNumber}`))) : this.ordersChanged.next(this._orders);
+  public searchOrderById(orderNumber: number) {
+    this.searchValueChanged.next(orderNumber);
+  }
+
+  public filterOrderByStatus(status: OrderStatus) {
+    this.statusFilterChanged.next(status);
   }
 }
