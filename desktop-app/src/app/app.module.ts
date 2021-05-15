@@ -30,7 +30,10 @@ import { LogoutRedirectComponent } from './pages/auth/logout-redirect/logout-red
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/authentication/token-interceptor';
+import { OrdersRepository } from './api/orders/types/OrdersRepository';
+import { OrdersRepositoryImplementation } from './api/orders/OrdersRepositoryImplementation';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,17 @@ import { HttpClientModule } from '@angular/common/http';
     ToastrModule.forRoot(),
     HttpClientModule 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: OrdersRepository,
+      useClass: OrdersRepositoryImplementation
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
