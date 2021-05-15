@@ -34,6 +34,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/authentication/token-interceptor';
 import { OrdersRepository } from './api/orders/types/OrdersRepository';
 import { OrdersRepositoryImplementation } from './api/orders/OrdersRepositoryImplementation';
+import { OrdersStatusFilteringComponent } from './components/orders/orders-status-filtering/orders-status-filtering.component';
+import { OrdersStatusFilterPipe } from './pipes/orders-status-filter.pipe';
+import { SearchValueFilterPipe } from './pipes/search-value-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { OrdersRepositoryImplementation } from './api/orders/OrdersRepositoryImp
     LoginComponent,
     LoginRedirectComponent,
     LogoutRedirectComponent,
+    OrdersStatusFilteringComponent,
+    OrdersStatusFilterPipe,
+    SearchValueFilterPipe,
   ],
   imports: [
     BrowserModule,

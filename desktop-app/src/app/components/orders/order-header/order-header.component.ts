@@ -12,8 +12,8 @@ export class OrderHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  filterOrder(searchValue:number) {
+  filterOrderById(searchValue:number) {
     this.orderNumber = searchValue;
-    this.ordersService.filterOrderById(this.orderNumber);
+    this.ordersService.searchOrderById(this.orderNumber);
   }
 }
