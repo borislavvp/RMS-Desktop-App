@@ -1,8 +1,8 @@
 <div class="flex flex-col justify-between h-full w-full">
     <app-order-header></app-order-header>
-    <app-orders-table [page]="page"></app-orders-table>
+    <app-orders-table [page]="page" [itemsPerPage]="OrdersPerPage"></app-orders-table>
     <div class="flex items-center py-6">
-        <span class="flex text-lg  text-gray-700 mr-6">Showing 10 items from 34 data</span>
+        <span class="flex text-lg  text-gray-700 mr-6">Showing {{numberOfOrdersVisible}} items from {{numberOfOrders}} data</span>
         <pagination-controls 
             class="pagination"
             (pageChange)="page = $event"
