@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { from } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AuthService } from './services/authentication/auth.service';
+import { OrderAvailableMessage } from './services/socket/messages/server/OrderAvailableMessage';
+import { SocketService } from './services/socket/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,18 @@ export class AppComponent implements OnInit {
   private isUserAuthenticated = false;
   private _authService: AuthService;
 
-  constructor(authService: AuthService) {
+  constructor(authService: AuthService,socketService:SocketService) {
     this._authService = authService;
     this._authService.authChanged
-      .subscribe((logged) => this.isUserAuthenticated = logged)
+      .subscribe((logged) => {
+        this.isUserAuthenticated = logged;
+        if (logged) {
+          authService.User
+          .then(user => socketService.connect(environment.ORDER_MESSAGE_SERVICE,user.access_token))
+        } else {
+          socketService.disconnect();
+        }
+      })
    }
 
   ngOnInit(): void {
