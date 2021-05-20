@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  PRODUCTION: false,
+  IDENTITY_AUTHORITY: "https://localhost:5001",
+  ORDER_MESSAGE_SERVICE:"ws://localhost:3333",
 };
 
 /*
