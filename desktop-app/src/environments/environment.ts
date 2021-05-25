@@ -5,8 +5,8 @@
 export const environment = {
   PRODUCTION: false,
   IDENTITY_AUTHORITY: "https://localhost:5001",
-  ORDER_MESSAGE_SERVICE: "ws://localhost:3333",
-  ORDERS_MICROSERVICE: "https://localhost:5050/api/orders"
+  ORDER_MESSAGE_SERVICE: "ws://localhost:3333/websocket",
+  ORDERS_MICROSERVICE: "https://localhost:5050/orders/api"
 };
 
 /*
