@@ -1,4 +1,4 @@
-import { Meal } from "src/app/models/meal.model";
+import { OrderProduct } from "src/app/models/orderProduct.model";
 import { Message } from "../Message";
 import { ServerMessageType } from "./ServerMessageType";
 
@@ -9,7 +9,7 @@ interface OrderAvailablePayload {
   customerPhone: string,
   location: string,
   amount: number,
-  products:Meal[]
+  products:OrderProduct[]
 }
 
 export class OrderAvailableMessage implements Message {
