@@ -4,5 +4,5 @@ import { OrderInputModel } from "./OrderInputModel";
 
 export abstract class OrdersRepository{
     abstract getTodaysOrders: () => Observable<OrderInputModel[]>;
-    abstract changeOrderStatus: (status: OrderStatus) => Observable<ArrayBuffer>;
+    abstract changeOrderStatus: (orderNumber:number,status: OrderStatus) => Observable<ArrayBuffer>;
 }
