@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Order, OrderStatus } from 'src/app/models/order.model';
 import { OrdersService } from 'src/app/services/orders/orders.service';
 
 @Component({
@@ -12,14 +13,35 @@ export class OrdersPageComponent implements OnInit {
   numberOfOrdersVisible: number = 0;
   innerHeight: any;
   innerWidth: any;
+  statusFilterApplied: OrderStatus;
+  searchOrderValue: number;
+  private visibleOrders: Order[];
 
   constructor(private _ordersService: OrdersService) {
+    _ordersService.statusFilterChanged.subscribe((status) => {
+      this.statusFilterApplied = status;
+      this.changeOrdersPaginationInformation();
+    });
+    _ordersService.searchValueChanged.subscribe((value) => {
+      this.searchOrderValue = value;
+      this.changeOrdersPaginationInformation();
+    });
+
     _ordersService.ordersChanged.subscribe(orders => {
-      this.numberOfOrders = orders.length;
-      this.numberOfOrdersVisible = this.OrdersPerPage * this.page > orders.length ? orders.length : this.OrdersPerPage * this.page;
+      this.visibleOrders = orders;
+      this.changeOrdersPaginationInformation();
     })
+    
 }
   
+  private changeOrdersPaginationInformation = () => {
+      const filteredById = this.searchOrderValue ? this.visibleOrders.filter(o => `${o.id}`.includes(`${this.searchOrderValue}`)) : this.visibleOrders;
+      const filteredOrders = this.statusFilterApplied ? filteredById.filter(o => o.status === this.statusFilterApplied) : filteredById;
+
+      this.numberOfOrders = filteredOrders.length;
+      this.numberOfOrdersVisible = this.OrdersPerPage * this.page > filteredOrders.length ? filteredOrders.length : this.OrdersPerPage * this.page; 
+  }
+
   public IsScreenBigger = () => innerHeight > 800 && innerWidth > 1450;
 
   get IsLoading() {

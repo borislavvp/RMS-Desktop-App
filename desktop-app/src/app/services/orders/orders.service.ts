@@ -61,9 +61,11 @@ export class OrdersService {
   get Orders() {
     return this._orders;
   }
+
   public getOrderById(orderNumber: number) {
     return this._orders.find(o => o.id === orderNumber);
   }
+  
   public initializeTodaysOrders() {
     return new Promise<void>((resolve, reject) => {
       this._odersRepository.getTodaysOrders()
