@@ -13,18 +13,23 @@ export class OrdersPageComponent implements OnInit {
   innerHeight: any;
   innerWidth: any;
 
-  constructor(ordersService: OrdersService) {
-    ordersService.ordersChanged.subscribe(orders => {
+  constructor(private _ordersService: OrdersService) {
+    _ordersService.ordersChanged.subscribe(orders => {
       this.numberOfOrders = orders.length;
       this.numberOfOrdersVisible = this.OrdersPerPage * this.page > orders.length ? orders.length : this.OrdersPerPage * this.page;
     })
 }
   
   public IsScreenBigger = () => innerHeight > 800 && innerWidth > 1450;
-  
+
+  get IsLoading() {
+    return this._ordersService.fetching;
+  }
+
   get OrdersPerPage() {
     return this.IsScreenBigger() ? 10 : 7;
   }
+
   ngOnInit(): void {
   }
   

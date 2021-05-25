@@ -23,14 +23,14 @@ export class OrderOptionsComponent implements OnInit {
 
   prepareOrder = ($event:MouseEvent) => {
     this.stopEventPropagation($event);
-    this.ordersService.changeOrderStatus(OrderStatus.Preparing)
+    this.ordersService.changeOrderStatus(this.order.id,OrderStatus.Preparing)
       .then(() => this.toastr.success("Successfully changed the order status to 'Preparing'!"))
       .catch(() => this.toastr.error("Something went wrong, please try again!"))
   }
 
   sendForDelivery = ($event:MouseEvent) => {
     this.stopEventPropagation($event);
-    this.ordersService.changeOrderStatus(OrderStatus.Prepared)
+    this.ordersService.changeOrderStatus(this.order.id,OrderStatus.Prepared)
       .then(() => this.toastr.success("Successfully changed the order status to 'Prepared'!"))
       .catch(() => this.toastr.error("Something went wrong, please try again!"));
   }

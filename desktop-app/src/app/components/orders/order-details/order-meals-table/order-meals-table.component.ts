@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Dummy_Meals } from 'src/app/models/meal.model';
+import { OrderProduct } from 'src/app/models/orderProduct.model';
 
 @Component({
   selector: 'app-order-meals-table',
@@ -7,14 +8,17 @@ import { Dummy_Meals } from 'src/app/models/meal.model';
   styleUrls: ['./order-meals-table.component.scss']
 })
 export class OrderMealsTableComponent implements OnInit {
+  @Input() orderProducts: OrderProduct[];
   page: number = 1;
-  headers = ['Meal ID', 'Name', 'Description', 'Products', 'Price'];
-  meals = Dummy_Meals;
-  private columns = Object.keys(this.meals[0]);
+  productsPerPage = 5;
+  headers = ['Meal ID', 'Name', 'Ingredients', 'Price','Quantity'];
 
-  public getColumns = () => this.columns.filter(column => column !== 'img');
+  public getColumns = () => this.orderProducts.length > 0 ?  Object.keys(this.orderProducts[0]).filter(column => column !== 'imageUrl') : [];
   
-  public getMealsNumber = () => this.meals.length;
+  public getProductsNumber = () => this.orderProducts.length;
+  
+  public  numberOfProductsVisible = () => this.productsPerPage * this.page > this.getProductsNumber() ? this.getProductsNumber() : this.productsPerPage * this.page;
+
   constructor() { }
 
   ngOnInit(): void {
