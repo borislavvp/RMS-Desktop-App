@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/authentication/auth.service';
-import { OrderAvailableMessage } from './services/socket/messages/server/OrderAvailableMessage';
 import { SocketService } from './services/socket/socket.service';
 
 @Component({
@@ -10,7 +9,8 @@ import { SocketService } from './services/socket/socket.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = "Restaurant Application"
+  title = "Restaurant Application";
+  loading: boolean = false;
   private isUserAuthenticated = false;
   private _authService: AuthService;
 
