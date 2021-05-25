@@ -12,19 +12,25 @@ import { convertOrderFromInputModel } from './utils/convertOrderFromInputModel';
   providedIn: 'root'
 })
 export class OrdersService {
+  public fetching: boolean = false;
   private _orders: Order[];
   public ordersChanged: Subject<Order[]>;
+  public orderStatusChanged: Subject<Order>;
   public statusFilterChanged: Subject<OrderStatus>;
   public searchValueChanged: Subject<number>;
   
-  constructor(socketService: SocketService,private _odersRepository:OrdersRepository) {
+  constructor(socketService: SocketService, private _odersRepository: OrdersRepository) {
     this._orders = [];
     this.ordersChanged = new Subject();
+    this.orderStatusChanged = new Subject();
     this.statusFilterChanged = new Subject();
     this.searchValueChanged = new Subject();
     socketService.on.OrderAvailable = this.OrderAvailableHandler;
     socketService.on.OrderStatusChange = this.OrderStatusChangeHandler;
-    this.initializeTodaysOrders().catch(() => { });
+    this.fetching = true;
+    this.initializeTodaysOrders()
+      .then(() => setTimeout(() => { },500))
+      .finally(() => this.fetching = false);
   }
 
   private OrderAvailableHandler = ({ payload }: OrderAvailableMessage) => {
@@ -44,10 +50,11 @@ export class OrdersService {
   }
 
   private OrderStatusChangeHandler = ({ payload }: OrderStatusChangeMessage) => {
-    const order = this._orders.find(o => o.id === payload.orderNumber)
-    if (order) {
-      order.status = payload.orderStatus;
+    const orderIndex = this._orders.findIndex(o => o.id === payload.orderNumber)
+    if (orderIndex!==-1) {
+      this._orders[orderIndex].status = payload.orderStatus;
       this.ordersChanged.next(this._orders);
+      this.orderStatusChanged.next(this._orders[orderIndex]);
     }
   }
 
@@ -70,9 +77,9 @@ export class OrdersService {
     })
   }
 
-  public changeOrderStatus(status:OrderStatus) {
+  public changeOrderStatus(orderNumber:number,status:OrderStatus) {
     return new Promise<void>((resolve, reject) => {
-      this._odersRepository.changeOrderStatus(status)
+      this._odersRepository.changeOrderStatus(orderNumber,status)
         .toPromise()
         .then(() => resolve())
         .catch(() => {reject()})
