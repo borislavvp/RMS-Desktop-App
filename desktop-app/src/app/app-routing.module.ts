@@ -17,11 +17,12 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signin-oidc', component: LoginRedirectComponent},
   {path: 'signout-callback-oidc', component: LogoutRedirectComponent},
-  {path: 'orders', component: OrdersPageComponent ,canActivate: [AuthGuard] },
+  {path: 'orders', component: OrdersPageComponent, canActivate: [AuthGuard] },
   {path: 'orders/:id', component: OrderDetailsPageComponent,canActivate: [AuthGuard] },
   {path: 'meals', component: MealsTableComponent,canActivate: [AuthGuard] },
   {path: 'meals/new', component: AddMealPageComponent,canActivate: [AuthGuard] },
   {path: 'meals/:id', component: UpdateMealPageComponent,canActivate: [AuthGuard] },
+  {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -29,3 +30,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
