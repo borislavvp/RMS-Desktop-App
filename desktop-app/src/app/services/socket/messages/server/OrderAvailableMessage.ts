@@ -1,7 +1,7 @@
 import { OrderProduct } from "src/app/models/orderProduct.model";
 import { Message } from "../Message";
 import { ServerMessageType } from "./ServerMessageType";
-
+ 
 interface OrderAvailablePayload {
   orderNumber: number;
   orderDate: string,
