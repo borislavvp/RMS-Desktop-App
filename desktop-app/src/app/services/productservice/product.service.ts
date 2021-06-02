@@ -12,32 +12,32 @@ export class ProductService {
 
   getAll():Observable<Meal[]> {
     return this.http.get<Meal[]>(
-      'https://localhost:44366/products/get/'
+      'https://localhost:44366/api/products/getAll/'
     );
   }
 
   getById(id):Observable<Meal> {
     return this.http.get<Meal>(
-      'https://localhost:44366/products/get/' + id
+      'https://localhost:44366/api/products/getbyid/' + id
     );
   }
 
-  Insert(formData: FormData) {
+  Insert(formData) {
     return this.http.post(
-      'https://localhost:44366/products/get/',
+      'https://localhost:44366/api/products/insert',
       formData
     );
     }
 
     Delete(id) {
       return this.http.delete(
-        'https://localhost:44366/products/get/'+id
+        'https://localhost:44366/api/products/delete/'+id
       );
   }
 
   Update(id,formData: FormData) {
     return this.http.put(
-      'https://localhost:44366/products/get/'+id,
+      'https://localhost:44366/api/products/update/'+id,
       formData
     );
     }

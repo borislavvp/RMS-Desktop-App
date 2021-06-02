@@ -10,20 +10,20 @@ export class BlobService {
 
   getImage(name) {
     return this.http.get(
-      'https://localhost:44366/blob/get/'+ name,
+      'https://localhost:44366/api/blob/get/'+ name,
       {responseType: 'text'}
     );
   }
 
   DeleteImage(name){
     return this.http.delete(
-      'https://localhost:44366/blob/delete/'+ name
+      'https://localhost:44366/api/blob/delete/'+ name
     );
   }
   
   UploadImage(formData: FormData) {
     return this.http.post(
-      'https://localhost:44366/blob/upload/',
+      'https://localhost:44366/api/blob/upload/',
       formData
     );
   }

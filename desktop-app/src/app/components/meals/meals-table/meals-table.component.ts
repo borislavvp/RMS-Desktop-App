@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Dummy_Meals, Meal } from 'src/app/models/meal.model';
+import { Meal } from 'src/app/models/meal.model';
+
 import { BlobService } from '../../../services/blobservices/blob.service';
 import { ProductService } from '../../../services/productservice/product.service';
 @Component({
@@ -9,7 +10,7 @@ import { ProductService } from '../../../services/productservice/product.service
 })
 export class MealsTableComponent implements OnInit {
   headers = ['Meal ID', 'Name', 'Description', 'Products', 'Price'];
-  meals = Dummy_Meals;
+  meals = [];
   products:Meal[];
   private columns = Object.keys(this.meals[0]);
 

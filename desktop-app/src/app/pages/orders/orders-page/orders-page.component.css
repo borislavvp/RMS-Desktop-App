@@ -1,0 +1,16 @@
+.pagination::ng-deep.ngx-pagination {
+  @apply mb-0;
+}
+
+.pagination::ng-deep.ngx-pagination .current {
+  @apply bg-gray-700 rounded shadow-md;
+}
+
+.pagination::ng-deep.ngx-pagination .pagination-next ::after {
+  @apply font-semibold text-yellow-700 ml-0;
+}
+
+.pagination::ng-deep.ngx-pagination .pagination-previous ::before {
+  @apply font-semibold text-yellow-700 mr-0;
+}
+/*# sourceMappingURL=orders-page.component.css.map */

@@ -19,8 +19,8 @@ const routes: Routes = [
   {path: 'signout-callback-oidc', component: LogoutRedirectComponent},
   {path: 'orders', component: OrdersPageComponent ,canActivate: [AuthGuard] },
   {path: 'orders/:id', component: OrderDetailsPageComponent,canActivate: [AuthGuard] },
-  {path: 'meals', component: MealsTableComponent,canActivate: [AuthGuard] },
-  {path: 'meals/new', component: AddMealPageComponent,canActivate: [AuthGuard] },
+  {path: 'meals', component: MealsTableComponent},
+  {path: 'meals/new', component: AddMealPageComponent},
   {path: 'meals/:id', component: UpdateMealPageComponent,canActivate: [AuthGuard] },
 ];
 

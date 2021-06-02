@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlobService } from '../../../../blob.service';
+import { BlobService } from '../../../../services/blobservices/blob.service';
 @Component({
   selector: 'app-update-meal-image',
   templateUrl: './update-meal-image.component.html',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Dummy_Meals } from 'src/app/models/meal.model';
+
 
 @Component({
   selector: 'app-order-meals-table',
@@ -9,7 +9,7 @@ import { Dummy_Meals } from 'src/app/models/meal.model';
 export class OrderMealsTableComponent implements OnInit {
   page: number = 1;
   headers = ['Meal ID', 'Name', 'Description', 'Products', 'Price'];
-  meals = Dummy_Meals;
+  meals = [];
   private columns = Object.keys(this.meals[0]);
 
   public getColumns = () => this.columns.filter(column => column !== 'img');
