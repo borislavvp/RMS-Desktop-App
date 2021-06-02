@@ -18,13 +18,13 @@ export class BlobService {
   DeleteImage(name){
     return this.http.delete(
       'https://localhost:44366/api/blob/delete/'+ name
-    );
+    ).subscribe();
   }
   
   UploadImage(formData: FormData) {
     return this.http.post(
-      'https://localhost:44366/api/blob/upload/',
+      'https://localhost:44366/api/blob/upload',
       formData
-    );
+    ).subscribe();
   }
 }

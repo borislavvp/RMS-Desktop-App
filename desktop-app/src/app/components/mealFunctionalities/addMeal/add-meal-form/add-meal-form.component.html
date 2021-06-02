@@ -54,11 +54,8 @@
                 class="z-10 relative flex flex-col bg-white rounded shadow-lg"
             >
                 <div  class="m-2" *ngFor="let cat of this.categories">
-                    <button class="flex rounded items-center hover:bg-gray-100 p-2 ">
-                        <span class="text-green-600 mr-4">
-                            
-                        </span>
-                        <span class="font-semibold text-green-700  text-lg mr-4">{{cat.name}}</span>
+                    <button class="flex rounded items-center hover:bg-gray-100 p-2 " (click)="setCategory(cat.name)">
+                        <span class="font-semibold text-green-700  text-lg mr-4" #categ>{{cat.name}}</span>
                     </button>
                 </div>
                 
@@ -76,7 +73,7 @@
         <textarea #prods class="outline-none px-4 py-2 mt-2 shadow-lg w-11/12 rounded" placeholder="Meal products..." rows="2" cols="40"></textarea>
       </div>
 
-      <button (click)="getMealInput(name.value,price.value,dropdown.value,desc.value,prods.value)" class="flex w-24 bg-white px-2 py-4 mt-8 shadow-lg rounded focus:outline-none hover:text-black text-gray-400">
+      <button (click)="getMealInput(name.value,price.value,desc.value,prods.value)" class="flex w-24 bg-white px-2 py-4 mt-8 shadow-lg rounded focus:outline-none hover:text-black text-gray-400">
         <span class="font-semibold text-sm ml-2">Add Meal</span>
     </button>
 </div>

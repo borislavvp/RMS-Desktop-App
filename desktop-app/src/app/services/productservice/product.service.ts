@@ -26,7 +26,7 @@ export class ProductService {
     return this.http.post(
       'https://localhost:44366/api/products/insert',
       formData
-    );
+    ).subscribe();
     }
 
     Delete(id) {
@@ -35,11 +35,11 @@ export class ProductService {
       );
   }
 
-  Update(id,formData: FormData) {
-    return this.http.put(
-      'https://localhost:44366/api/products/update/'+id,
+  Update(formData: FormData) {
+    return this.http.post(
+      'https://localhost:44366/api/products/update',
       formData
-    );
+    ).subscribe();
     }
     
   }

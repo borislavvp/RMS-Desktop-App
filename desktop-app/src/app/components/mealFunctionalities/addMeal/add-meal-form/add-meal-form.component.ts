@@ -12,6 +12,7 @@ import {CategoryService} from '../../../../services/categoryservice/category.ser
 })
 export class AddMealFormComponent implements OnInit {
 
+  chosenCategory:string;
   file:any;
   filename = '';
   imageSource:string = '';
@@ -23,10 +24,12 @@ export class AddMealFormComponent implements OnInit {
    }
   newMeal:Meal;
   ngOnInit(): void {
+    this.categories = [];
     this.catServ.getAll().subscribe(x=>this.categories=x);
   }
-  getMealInput(name,price,category,desc,prods){
+  getMealInput(name,price,desc,prods){
     this.formData = new FormData();
+    var category:Category;
     if(this.file!=null){
       
       this.formData.append(this.file[0].name, this.file[0]);
@@ -34,21 +37,26 @@ export class AddMealFormComponent implements OnInit {
     this.formDataMeal = new FormData();
     var id = Guid.create();
     console.log(id);
-    //var _cat = this.categories.find(x=>x.name==category);
-    var temp = new Meal(id,name,prods,desc,price,1,this.file[0].name,this.categories[0].id,this.categories[0]);
+    this.categories.forEach(x=>{
+      if(x.name = this.chosenCategory){
+        category = x;
+      }
+    })
+    var temp = new Meal(id,name,prods,desc,price,1,this.file[0].name,category.id,category);
     for ( var key in temp ) {
       console.log(key+"  "+temp[key]);
       this.formDataMeal.append(key, temp[key]);
     };
-    console.log(temp.name);
-    console.log(this.file[0].name);
-    console.log(this.formDataMeal);
-    //this.blobServ.UploadImage(this.formData);
+
+    this.blobServ.UploadImage(this.formData);
     this.prodServ.Insert(this.formDataMeal);
 
 
   }
-
+  setCategory(cat){
+    console.log(cat);
+    this.chosenCategory = cat;
+  }
   setFilename(files) {
     if (files[0]) {
       this.file = files;

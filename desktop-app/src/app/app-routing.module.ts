@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'orders/:id', component: OrderDetailsPageComponent,canActivate: [AuthGuard] },
   {path: 'meals', component: MealsTableComponent},
   {path: 'meals/new', component: AddMealPageComponent},
-  {path: 'meals/:id', component: UpdateMealPageComponent,canActivate: [AuthGuard] },
+  {path: 'meals/:id', component: UpdateMealPageComponent},
 ];
 
 @NgModule({

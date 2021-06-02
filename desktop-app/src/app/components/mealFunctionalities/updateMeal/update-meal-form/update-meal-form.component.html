@@ -11,18 +11,34 @@
     </div>
     <div class="flex ">
         <div class="flex-1 ...">
-            <app-add-meal-image></app-add-meal-image>
+            <div class="relative flex-auto h-40 w-40">
+                <div class="absolute inset-0 bg-gradient-to-r from-yellow-700 to-yellow-500 shadow-lg 
+                transform -skew-y-6 sm:skew-y-0 sm:rotate-12 sm:rounded-3xl 2xl:-skew-y-4 2xl:rotate-4"
+                >
+                </div>
+            
+                <div class="relative bg-white w-40 h-40 rounded-3xl overflow-hidden shadow-lg outline-none align-middle">
+                    <input
+                    hidden
+                    #fileInput
+                    type="file"
+                    id="file"
+                    (change)="setFilename(fileInput.files)"
+                    />
+                    <button (click)="fileInput.click()" class="mt-16 ml-7 focus:outline-none font-semibold hover:text-black text-gray-400">+ Add Image</button>
+                </div>
+            </div>
         </div>
         <div class="flex-1 mt-8 ">
             <div class="flex flex-col w-full mx-6">
                 <span class="font-semibold text-sm  align-middle">Name</span>
-                <input type="text" placeholder="Meal name" class="outline-none px-4 py-2 mt-4 shadow-lg w-full rounded"/>
+                <input #name type="text" placeholder="Meal name" class="outline-none px-4 py-2 mt-4 shadow-lg w-full rounded"/>
             </div>
         </div>
         <div class="flex-1 mt-8 ml-4">
             <div class="flex flex-col w-full mx-6">
                 <span class="font-semibold text-sm  align-middle">Price</span>
-                <input type="number" placeholder="Meal price - Ex. 5,99" class="outline-none mt-4  px-2 py-2 shadow-lg w-full rounded"/>
+                <input #price type="number" placeholder="Meal price - Ex. 5,99" class="outline-none mt-4  px-2 py-2 shadow-lg w-full rounded"/>
             </div>
         </div>
         <div class="flex-1 mt-7 ml-10">
@@ -38,30 +54,12 @@
                 dropdownMenu 
                 class="z-10 relative flex flex-col bg-white rounded shadow-lg"
             >
-                <div  class="m-2">
-                    <button class="flex rounded items-center hover:bg-gray-100 p-2 ">
-                        <span class="text-green-600 mr-4">
-                            
-                        </span>
-                        <span class="font-semibold text-green-700  text-lg mr-4">Accept order</span>
+                <div  class="m-2" *ngFor="let cat of this.categories">
+                    <button class="flex rounded items-center hover:bg-gray-100 p-2 " (click)="setCategory(cat.name)">
+                        <span class="font-semibold text-green-700  text-lg mr-4" #categ>{{cat.name}}</span>
                     </button>
                 </div>
-                <div  class="m-2">
-                    <button class="flex rounded items-center hover:bg-gray-100 p-2 ">
-                        <span class="text-yellow-800 mr-4">
-                            
-                        </span>
-                        <span class="font-semibold text-yellow-800 text-lg mr-4">Send for delivery</span>
-                    </button>
-                </div>
-                <div class="m-2">
-                    <button class="flex w-full hover:bg-gray-100 px-2 py-2">
-                        <span class="text-gray-800 mr-4">
-                            
-                        </span>
-                        <span class="font-semibold text-lg mr-4">View Details</span>
-                    </button>
-                </div>
+                
             </div>
             </base-dropdown>
         </div>
@@ -69,14 +67,14 @@
 
       <div class=" flex flex-col w-full mt-8">
         <span class="font-semibold text-sm  align-middle">Description</span>
-        <textarea class="outline-none px-4 py-2 mt-2 shadow-lg w-11/12 rounded" placeholder="Meal description..." rows="2" cols="40"></textarea>
+        <textarea #desc class="outline-none px-4 py-2 mt-2 shadow-lg w-11/12 rounded" placeholder="Meal description..." rows="2" cols="40"></textarea>
       </div>
       <div class="flex flex-col w-full mt-8">
         <span class="font-semibold text-sm  align-middle">Products</span>
-        <textarea class="outline-none px-4 py-2 mt-2 shadow-lg w-11/12 rounded" placeholder="Meal products..." rows="2" cols="40"></textarea>
+        <textarea #prods class="outline-none px-4 py-2 mt-2 shadow-lg w-11/12 rounded" placeholder="Meal products..." rows="2" cols="40"></textarea>
       </div>
 
-      <button class="flex w-28 bg-white px-2 py-4 mt-8 shadow-lg rounded focus:outline-none hover:text-black text-gray-400">
+      <button (click)="getMealInput(name.value,price.value,desc.value,prods.value)" class="flex w-28 bg-white px-2 py-4 mt-8 shadow-lg rounded focus:outline-none hover:text-black text-gray-400">
         <span class="font-semibold text-sm ml-2">Update Meal</span>
     </button>
 </div>
