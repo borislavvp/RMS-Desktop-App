@@ -1,6 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Dummy_Meals } from 'src/app/models/meal.model';
+import { Meal } from 'src/app/models/meal.model';
 
+import { BlobService } from '../../../services/blobservices/blob.service';
+import { ProductService } from '../../../services/productservice/product.service';
 @Component({
   selector: 'app-meals-table',
   templateUrl: './meals-table.component.html',
@@ -8,7 +10,8 @@ import { Dummy_Meals } from 'src/app/models/meal.model';
 })
 export class MealsTableComponent implements OnInit {
   headers = ['Meal ID', 'Name', 'Description', 'Products', 'Price'];
-  meals = Dummy_Meals;
+  meals = [];
+  products:Meal[];
   private columns = Object.keys(this.meals[0]);
 
   public getColumns = () => this.columns.filter(column => column !== 'img');
@@ -17,7 +20,8 @@ export class MealsTableComponent implements OnInit {
 
   public IsScreenBigger = () => innerHeight > 800 && innerWidth > 1450;
 
-  constructor() { }
+  constructor(private blob:BlobService, private product: ProductService) {
+   }
   
   public innerHeight: any;
   public innerWidth: any;
@@ -25,6 +29,11 @@ export class MealsTableComponent implements OnInit {
   page: number = 1;
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+  public getProducts(){
+    this.product.getAll().subscribe(x=>this.products = x);
+    console.log(this.products);
   }
 
   @HostListener('window:resize', ['$event'])
