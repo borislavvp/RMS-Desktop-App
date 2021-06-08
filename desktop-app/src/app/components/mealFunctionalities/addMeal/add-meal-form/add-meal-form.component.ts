@@ -13,6 +13,7 @@ import {CategoryService} from '../../../../services/categoryservice/category.ser
 export class AddMealFormComponent implements OnInit {
 
   chosenCategory:string;
+  imgUrl:string;
   file:any;
   filename = '';
   imageSource:string = '';
@@ -50,7 +51,7 @@ export class AddMealFormComponent implements OnInit {
 
     this.blobServ.UploadImage(this.formData);
     this.prodServ.Insert(this.formDataMeal);
-
+    this.setImage(temp.image);
 
   }
   setCategory(cat){
@@ -62,5 +63,11 @@ export class AddMealFormComponent implements OnInit {
       this.file = files;
       this.filename = files[0].name;
     }
+  }
+  setImage(prod){
+    this.blobServ.getImage(prod).subscribe(x=>{
+      this.imgUrl = x;
+      console.log(x);
+    })
   }
 }

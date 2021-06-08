@@ -25,6 +25,7 @@
                     id="file"
                     (change)="setFilename(fileInput.files)"
                     />
+                    <img *ngIf="this.imgUrl!=null" [src]="this.imgUrl" class="w-full h-full">
                     <button (click)="fileInput.click()" class="mt-16 ml-7 focus:outline-none font-semibold hover:text-black text-gray-400">+ Add Image</button>
                 </div>
             </div>

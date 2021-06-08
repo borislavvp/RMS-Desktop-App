@@ -15,7 +15,7 @@
                 transform -skew-y-6 sm:skew-y-0 sm:rotate-12 sm:rounded-3xl 2xl:-skew-y-4 2xl:rotate-4"
                 >
                 </div>
-            
+                
                 <div class="relative bg-white w-40 h-40 rounded-3xl overflow-hidden shadow-lg outline-none align-middle">
                     <input
                     hidden
@@ -24,6 +24,7 @@
                     id="file"
                     (change)="setFilename(fileInput.files)"
                     />
+                    <img *ngIf="this.imgUrl!=null" [src]="this.imgUrl" class="w-full h-full">
                     <button (click)="fileInput.click()" class="mt-16 ml-7 focus:outline-none font-semibold hover:text-black text-gray-400">+ Add Image</button>
                 </div>
             </div>

@@ -22,6 +22,7 @@ export class UpdateMealFormComponent implements OnInit {
   formDataMeal: FormData;
   categories: Category[];
   products:Meal[];
+  imgUrl: string;
   constructor(
     private route: ActivatedRoute,private blobServ: BlobService,private prodServ: ProductService,private catServ: CategoryService) { }
 
@@ -110,8 +111,13 @@ export class UpdateMealFormComponent implements OnInit {
       this.formDataMeal.append(key, changedProd[key]);
     };
     this.prodServ.Update(this.formDataMeal);
-
+    this.setImage(changedProd.image);
 
   }
-
+  setImage(prod){
+    this.blobServ.getImage(prod).subscribe(x=>{
+      this.imgUrl = x;
+      console.log(x);
+    })
+  }
 }
