@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Dummy_Meals, Meal } from 'src/app/models/meal.model';
+import { Meal } from 'src/app/models/meal.model';
 import { Order, OrderStatus } from 'src/app/models/order.model';
 import { OrdersService } from 'src/app/services/orders/orders.service';
 

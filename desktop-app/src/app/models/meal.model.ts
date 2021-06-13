@@ -1,32 +1,6 @@
-export class Meal{
-    constructor(public id: number, public img: string, public name: string, public description: string,public products: string,public price:number){}
-}
+import { Guid } from "guid-typescript";
+import { Category } from "./category.model";
 
-export const Dummy_Meals = [
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-    new Meal(1, "https://media-cdn.tripadvisor.com/media/photo-s/1a/81/fd/8d/tortilla-with-chicken.jpg",
-        "Tortilla with Chicken", "Chicken fillet wrapped with vegetables and potatos","Chicken fillet, chery tomatoes,potatos", 12.25),
-]
+export class Meal{
+    constructor(public id: Guid, public name: string,public ingredients: string, public description: string,public price:number,public availability:number,public image: string, public categoryId:Guid, public category:Category){}
+}

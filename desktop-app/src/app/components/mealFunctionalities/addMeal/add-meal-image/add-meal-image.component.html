@@ -5,6 +5,15 @@
     </div>
 
     <div class="relative bg-white w-40 h-40 rounded-3xl overflow-hidden shadow-lg outline-none align-middle">
-        <button class="mt-16 ml-7 focus:outline-none font-semibold hover:text-black text-gray-400">+ Add Image</button>
+        <input
+        hidden
+        #fileInput
+        type="file"
+        id="file"
+        (change)="setFilename(fileInput.files)"
+        />
+        <button type="button">Save</button>
+        <br />
+        <button (click)="fileInput.click()" class="mt-16 ml-7 focus:outline-none font-semibold hover:text-black text-gray-400">+ Add Image</button>
     </div>
 </div>
