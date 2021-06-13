@@ -1,7 +1,7 @@
 export const environment = {
   PRODUCTION: true,
-  //TODO: To be changed when deployed
-  IDENTITY_AUTHORITY: "https://localhost:5001",
-  ORDER_MESSAGE_SERVICE:"ws://localhost:3333",
-  ORDERS_MICROSERVICE: "https://localhost:5050/api/orders"
+  IDENTITY_AUTHORITY: "https://51.141.4.73/api/v1/identity",
+  ORDER_MESSAGE_SERVICE: "wss://51.141.4.73/api/v1/orders-status-socket",
+  ORDERS_MICROSERVICE: "https://51.141.4.73/api/v1/restaurant-gateway/api/orders",
+  PRODUCTS_MICROSERVICE: "https://51.141.4.73/api/v1/restaurant-gateway/api/products"
 };

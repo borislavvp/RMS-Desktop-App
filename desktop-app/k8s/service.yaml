@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: restaurantapp-service
+ namespace:  ingress
+spec:
+ type: ClusterIP 
+ selector:
+    app: restaurantapp
+ ports:
+  - port: 80
