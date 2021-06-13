@@ -4,11 +4,18 @@
 
 export const environment = {
   PRODUCTION: false,
-  IDENTITY_AUTHORITY: "https://localhost:5001",
-  ORDER_MESSAGE_SERVICE: "ws://localhost:3333",
-  ORDERS_MICROSERVICE: "https://localhost:5050/orders/api",
-  PRODUCTS_MICROSERVICE: "https://localhost:5050/products/api"
+  IDENTITY_AUTHORITY: "https://51.141.4.73/api/v1/identity",
+  ORDER_MESSAGE_SERVICE: "wss://51.141.4.73/api/v1/orders-status-socket",
+  ORDERS_MICROSERVICE: "https://51.141.4.73/api/v1/restaurant-gateway/api/orders",
+  PRODUCTS_MICROSERVICE: "https://51.141.4.73/api/v1/restaurant-gateway/api/products"
 };
+// export const environment = {
+//   PRODUCTION: false,
+//   IDENTITY_AUTHORITY: "https://localhost:5001",
+//   ORDER_MESSAGE_SERVICE: "ws://localhost:3333",
+//   ORDERS_MICROSERVICE: "https://localhost:5050/orders/api",
+//   PRODUCTS_MICROSERVICE: "https://localhost:5050/products/api"
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file
