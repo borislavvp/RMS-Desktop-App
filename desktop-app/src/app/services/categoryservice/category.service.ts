@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class CategoryService {
 
   getAll():Observable<Category[]> {
     return this.http.get<Category[]>(
-      'https://localhost:44366/api/categories/getAll'
+      `${environment.PRODUCTS_MICROSERVICE}/categories/getAll`
     );
   }
 }

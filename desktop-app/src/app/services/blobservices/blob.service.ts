@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,20 +11,20 @@ export class BlobService {
 
   getImage(name) {
     return this.http.get(
-      'https://localhost:44366/api/blob/get/'+ name,
+      `${environment.PRODUCTS_MICROSERVICE}/blob/get/`+ name,
       {responseType: 'text'}
     );
   }
 
   DeleteImage(name){
     return this.http.delete(
-      'https://localhost:44366/api/blob/delete/'+ name
+      `${environment.PRODUCTS_MICROSERVICE}/blob/delete/`+ name
     ).subscribe();
   }
   
   UploadImage(formData: FormData) {
     return this.http.post(
-      'https://localhost:44366/api/blob/upload',
+      `${environment.PRODUCTS_MICROSERVICE}/blob/upload`,
       formData
     ).subscribe();
   }

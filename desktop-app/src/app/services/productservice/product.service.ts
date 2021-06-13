@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Meal } from 'src/app/models/meal.model';
 import { identifierModuleUrl } from '@angular/compiler';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,32 +13,32 @@ export class ProductService {
 
   getAll():Observable<Meal[]> {
     return this.http.get<Meal[]>(
-      'https://localhost:44366/api/products/getAll/'
+      `${environment.PRODUCTS_MICROSERVICE}/products/getAll/`
     );
   }
 
   getById(id):Observable<Meal> {
     return this.http.get<Meal>(
-      'https://localhost:44366/api/products/getbyid/' + id
+      `${environment.PRODUCTS_MICROSERVICE}/products/getbyid/` + id
     );
   }
 
   Insert(formData) {
     return this.http.post(
-      'https://localhost:44366/api/products/insert',
+      `${environment.PRODUCTS_MICROSERVICE}/products/insert`,
       formData
     ).subscribe();
     }
 
     Delete(id) {
       return this.http.delete(
-        'https://localhost:44366/api/products/delete/'+id
+        `${environment.PRODUCTS_MICROSERVICE}/products/delete/`+id
       );
   }
 
   Update(formData: FormData) {
     return this.http.post(
-      'https://localhost:44366/api/products/update',
+      `${environment.PRODUCTS_MICROSERVICE}/products/update`,
       formData
     ).subscribe();
     }

@@ -12,7 +12,7 @@ import {CategoryService} from '../../../../services/categoryservice/category.ser
 })
 export class AddMealFormComponent implements OnInit {
 
-  chosenCategory:string;
+  chosenCategory:string ;
   imgUrl:string;
   file:any;
   filename = '';
@@ -54,8 +54,10 @@ export class AddMealFormComponent implements OnInit {
     this.setImage(temp.image);
 
   }
+  get Category() {
+    return this.chosenCategory ? this.chosenCategory : "Category"
+  }
   setCategory(cat){
-    console.log(cat);
     this.chosenCategory = cat;
   }
   setFilename(files) {

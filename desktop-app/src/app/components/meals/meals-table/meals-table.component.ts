@@ -9,13 +9,9 @@ import { ProductService } from '../../../services/productservice/product.service
   styleUrls: ['./meals-table.component.scss']
 })
 export class MealsTableComponent implements OnInit {
-  headers = ['Meal ID', 'Name', 'Description', 'Products', 'Price'];
-  meals = [];
-  products:Meal[];
-  private columns = Object.keys(this.meals[0]);
-
-  public getColumns = () => this.columns.filter(column => column !== 'img');
-  
+  headers = ['Name', 'Description', 'Products', 'Price', "Availability"];
+  meals:Meal[] = [];
+  loading: boolean = false;
   public getMealsNumber = () => this.meals.length;
 
   public IsScreenBigger = () => innerHeight > 800 && innerWidth > 1450;
@@ -31,9 +27,19 @@ export class MealsTableComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
   }
-  public getProducts(){
-    this.product.getAll().subscribe(x=>this.products = x);
-    console.log(this.products);
+  public getColumns = () => this.meals.length > 0 ? Object.keys(this.meals[0])
+    .filter(column => column !== "id" && column !== 'image' && column !== "categoryId" && column !== "category" && column !== "image") : [];
+  
+  get IsLoading() {
+    return this.loading;
+  }
+  
+  public getProducts() {
+    this.loading = true;
+    this.product.getAll().subscribe(x => {
+      this.meals = x;
+      this.loading = false;
+    });
   }
 
   @HostListener('window:resize', ['$event'])

@@ -5,13 +5,17 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { SocketService } from '../socket/socket.service';
-
+import {CookieService} from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   httpOptions = {
-    withCredentials: true
+    withCredentials: true,
+    crossDomain: true,
+    Headers: {
+      origin: window.location.protocol + "//" + window.location.host,
+    }
   };
 
   fetching: boolean = false;
@@ -19,8 +23,7 @@ export class AuthService {
   
   private _userManager: UserManager;
   private _httpClient: HttpClient;
-
-  constructor(httpClient: HttpClient, router: Router,socketService:SocketService) {
+  constructor(httpClient: HttpClient, router: Router,socketService:SocketService,private cookieService:CookieService) {
     
     this._userManager = new UserManager({
       authority: environment.IDENTITY_AUTHORITY,
@@ -71,10 +74,12 @@ export class AuthService {
       setTimeout(() => {
         this._httpClient.post<void>(`${this._userManager.settings.authority}/api/login`, { email, password },this.httpOptions)
         .toPromise()
-        .then(() => this._userManager.signinRedirect()
-            .then(() => resolve())
-            .catch(() => reject())
-            .finally(() => this.fetching = false)
+          .then(() => {
+            this._userManager.signinRedirect()
+              .then(() => resolve())
+              .catch(() => reject())
+              .finally(() => this.fetching = false)
+          }
         )
         .catch(() => reject())
         .finally(() => this.fetching = false)
@@ -109,6 +114,7 @@ export class AuthService {
       this._userManager
         .signoutRedirectCallback()
         .then(() => resolve())
+        .then(() => this.cookieService.deleteAll())
         .catch(() => reject());
     })
   }
