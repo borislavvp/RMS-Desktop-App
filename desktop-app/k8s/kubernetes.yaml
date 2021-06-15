@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: restaurantapp
-        image: acrproep01.azurecr.io/restaurant:v3.9
+        image: acrproep01.azurecr.io/restaurant:v4.7
         ports:
         - containerPort: 80

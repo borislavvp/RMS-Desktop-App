@@ -12,7 +12,7 @@ export class OrderMealsTableComponent implements OnInit {
   productsPerPage = 5;
   headers = ['Meal ID', 'Name', 'Ingredients', 'Price','Quantity'];
 
-  public getColumns = () => this.orderProducts.length > 0 ?  Object.keys(this.orderProducts[0]).filter(column => column !== 'imageUrl') : [];
+  public getColumns = () => this.orderProducts.length > 0 ?  Object.keys(this.orderProducts[0]).filter(column => column !== 'imgUrl') : [];
   
   public getProductsNumber = () => this.orderProducts.length;
   

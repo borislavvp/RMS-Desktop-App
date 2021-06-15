@@ -16,7 +16,7 @@
                         <tr *ngFor="let product of orderProducts |  paginate: { itemsPerPage: 5 , currentPage: page } " >
                             <td class="py-2 w-32">
                                 <div class="mx-auto w-28 h-16 rounded-3xl overflow-hidden shadow-md">
-                                    <img [src]="product.imageUrl" class="w-full h-full object-cover "/>
+                                    <img [src]="product.imgUrl" class="w-full h-full object-cover "/>
                                 </div>
                             </td>
                             <td  *ngFor="let field of getColumns()" class=" text-center py-6">

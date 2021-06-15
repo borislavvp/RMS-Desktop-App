@@ -28,12 +28,12 @@ export class AuthService {
     this._userManager = new UserManager({
       authority: environment.IDENTITY_AUTHORITY,
       client_id: "DESKTOP_APP_ID",
-      redirect_uri:  window.location.protocol + "//" + window.location.host + "/signin-oidc",
+      redirect_uri:  window.location.protocol + "//" + window.location.host + "/restaurant/signin-oidc",
       response_type: "code",
       scope: "openid profile proeprestaurantgateway.fullaccess",
-      post_logout_redirect_uri: window.location.protocol + "//" + window.location.host + "/signout-callback-oidc",
+      post_logout_redirect_uri: window.location.protocol + "//" + window.location.host + "/restaurant/signout-callback-oidc",
       automaticSilentRenew: true,
-      silent_redirect_uri: window.location.protocol + "//" + window.location.host + "/assets/silent-callback.html"
+      silent_redirect_uri: window.location.protocol + "//" + window.location.host + "/restaurant/assets/silent-callback.html"
     })
     this._httpClient = httpClient;
     this._userManager.events.addAccessTokenExpired(() => {
