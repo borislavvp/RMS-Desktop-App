@@ -12,7 +12,11 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y">
-                        <tr [routerLink]="[order.id]" class="hover:bg-white cursor-pointer" *ngFor="let order of orders |  paginate: { itemsPerPage: IsScreenBigger() ? 10 : 7 , currentPage: page } " >
+                        <tr [routerLink]="[order.id]" class="hover:bg-white cursor-pointer" 
+                            *ngFor="let order of orders 
+                            | ordersStatusFilter: statusFilterApplied 
+                            | searchValueFilter: searchOrderValue
+                            | paginate: { itemsPerPage: itemsPerPage , currentPage: page } " >
                             <td [ngClass]="{'w-32':field === 'status'}" *ngFor="let field of getColumns()" class="text-center py-4">
                                 <span *ngIf="field !== 'status'; else orderStatus">
                                     {{order[field]}}

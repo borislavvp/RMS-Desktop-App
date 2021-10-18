@@ -24,7 +24,19 @@ import { UpdateMealImageComponent } from './components/mealFunctionalities/updat
 import { MealOptionsComponent } from './components/meals/meal-options/meal-options.component';
 import { OrderMealsTableComponent } from './components/orders/order-details/order-meals-table/order-meals-table.component';
 import { OrderOverviewComponent } from './components/orders/order-details/order-overview/order-overview.component';
-
+import { LoginComponent } from './pages/auth/login/login.component';
+import { LoginRedirectComponent } from './pages/auth/login-redirect/login-redirect.component';
+import { LogoutRedirectComponent } from './pages/auth/logout-redirect/logout-redirect.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/authentication/token-interceptor';
+import { OrdersRepository } from './api/orders/types/OrdersRepository';
+import { OrdersRepositoryImplementation } from './api/orders/OrdersRepositoryImplementation';
+import { OrdersStatusFilteringComponent } from './components/orders/orders-status-filtering/orders-status-filtering.component';
+import { OrdersStatusFilterPipe } from './pipes/orders-status-filter.pipe';
+import { SearchValueFilterPipe } from './pipes/search-value-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -48,14 +60,34 @@ import { OrderOverviewComponent } from './components/orders/order-details/order-
     UpdateMealImageComponent,
     MealOptionsComponent,
     OrderMealsTableComponent,
-    OrderOverviewComponent
+    OrderOverviewComponent,
+    LoginComponent,
+    LoginRedirectComponent,
+    LogoutRedirectComponent,
+    OrdersStatusFilteringComponent,
+    OrdersStatusFilterPipe,
+    SearchValueFilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
+    HttpClientModule 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: OrdersRepository,
+      useClass: OrdersRepositoryImplementation
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

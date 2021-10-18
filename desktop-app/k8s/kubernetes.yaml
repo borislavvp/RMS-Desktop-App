@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurantapp
+  namespace:  ingress
+  labels:
+    app: restaurantapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restaurantapp
+  template:
+    metadata:
+      labels:
+        app: restaurantapp
+    spec:
+      containers:
+      - name: restaurantapp
+        image: acrproep01.azurecr.io/restaurant:v4.7
+        ports:
+        - containerPort: 80

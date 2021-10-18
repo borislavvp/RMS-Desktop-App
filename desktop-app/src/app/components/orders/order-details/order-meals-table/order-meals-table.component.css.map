@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,AAAA,SAAS,AAAA,eAAe,CAAC;EAClC,MAAM,CAAN,IAAM;CAiBP;;AAlBD,AAGE,WAHS,AAAA,SAAS,AAAA,eAAe,CAGjC,QAAQ,CAAC;EACP,MAAM,CAAN,6BAAM;CACP;;AALH,AAQI,WARO,AAAA,SAAS,AAAA,eAAe,CAOjC,gBAAgB,CACd,OAAO,CAAC;EACN,MAAM,CAAN,kCAAM;CACP;;AAVL,AAcI,WAdO,AAAA,SAAS,AAAA,eAAe,CAajC,oBAAoB,CAClB,QAAQ,CAAC;EACP,MAAM,CAAN,kCAAM;CACP",
+    "sources": [
+        "order-meals-table.component.scss"
+    ],
+    "names": [],
+    "file": "order-meals-table.component.css"
+}

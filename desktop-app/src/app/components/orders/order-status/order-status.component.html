@@ -13,6 +13,13 @@
         </span>
         <span class="flex text-green-700 ml-8 font-semibold">Preparing</span>
     </div>
+    <div *ngSwitchCase="OrderStatus.Prepared" class="relative flex items-center justify-between">
+        <span class="flex absolute h-3 w-3 ">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-600"></span>
+        </span>
+        <span class="flex text-blue-700 ml-8 font-semibold">Waiting</span>
+    </div>
     <div *ngSwitchCase="OrderStatus.Delivering" class="relative flex items-center justify-between">
         <span class="flex absolute h-3 w-3 ">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-700 opacity-75"></span>
